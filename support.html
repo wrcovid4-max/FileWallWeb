@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Support &amp; FAQs — FileWall</title>
+<meta name="description" content="Answers about FileWall's encryption, backups, the hidden archive and supported platforms — plus how to reach a person.">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0E1626">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23B4C5FF' fill-rule='evenodd' d='M4.6 3.4H19.4V11.5C19.4 16.4 16.2 19.8 12 21.1C7.8 19.8 4.6 16.4 4.6 11.5ZM4.6 3.4H12V12.2H4.6Z'/%3E%3Cpath fill='none' stroke='%23B4C5FF' stroke-width='1.5' stroke-linejoin='round' d='M4.6 3.4H19.4V11.5C19.4 16.4 16.2 19.8 12 21.1C7.8 19.8 4.6 16.4 4.6 11.5Z'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/filewall.css">
+<script>
+/* Applied before first paint so a stored light theme never flashes dark. */
+document.documentElement.classList.add('js');
+try { if (localStorage.getItem('filewall-theme') === 'light')
+        document.documentElement.setAttribute('data-theme', 'light'); } catch (e) {}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header" id="siteHeader">
+  <div class="wrap nav">
+    <a class="brand" href="index.html"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M4.6 3.4H19.4V11.5C19.4 16.4 16.2 19.8 12 21.1C7.8 19.8 4.6 16.4 4.6 11.5ZM4.6 3.4H12V12.2H4.6Z"/><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" d="M4.6 3.4H19.4V11.5C19.4 16.4 16.2 19.8 12 21.1C7.8 19.8 4.6 16.4 4.6 11.5Z"/></svg> FileWall</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html#features">Features</a>
+      <a href="screens.html">Screens</a>
+      <a href="platforms.html">Platforms</a>
+      <a href="index.html#encryption">Security</a>
+      <a href="news.html">News</a>
+      <a href="support.html" aria-current="page">Support</a>
+      <a href="download.html">Download</a>
+    </nav>
+    <div class="nav-tools">
+      <button class="icon-btn" type="button" data-search-open aria-label="Search this site"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg></button>
+      <button class="icon-btn" type="button" data-theme-toggle aria-label="Switch to light theme"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2"/><path d="M12 19.3v2.2"/><path d="M4.2 4.2l1.6 1.6"/><path d="M18.2 18.2l1.6 1.6"/><path d="M2.5 12h2.2"/><path d="M19.3 12h2.2"/><path d="M4.2 19.8l1.6-1.6"/><path d="M18.2 5.8l1.6-1.6"/></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13.5A8.2 8.2 0 0 1 10.5 4a8.2 8.2 0 1 0 9.5 9.5Z"/></svg></button>
+      <button class="icon-btn nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="navDrawer" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg></button>
+    </div>
+    <a class="btn btn-primary btn-sm" data-link="download" href="download.html">Get FileWall</a>
+  </div>
+  <div class="nav-drawer" id="navDrawer">
+    <nav aria-label="Mobile">
+      <ul>
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="screens.html">Screens</a></li>
+        <li><a href="platforms.html">Platforms</a></li>
+        <li><a href="index.html#encryption">Security</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="support.html" aria-current="page">Support</a></li>
+        <li><a href="download.html">Download</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-primary" data-link="download" href="download.html">Get FileWall</a>
+  </div>
+</header>
+
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search FileWall" hidden>
+  <div class="search-panel">
+    <div class="search-field">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
+      <input id="searchInput" type="search" placeholder="Search FileWall…" autocomplete="off" aria-label="Search FileWall" aria-describedby="searchEmpty">
+      <button class="icon-btn" type="button" data-search-close aria-label="Close search" style="width:32px;height:32px;border:0">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12"/><path d="M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <ul class="search-results" id="searchResults"></ul>
+    <p class="search-empty" id="searchEmpty" hidden>Nothing matches that. Try “backup”, “keys” or “watch”.</p>
+  </div>
+</div>
+
+<main id="main">
+<section class="page-hero">
+    <div class="wrap">
+      <div><p class="pill-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 12.5a7.5 7.5 0 0 1-10.9 6.7L4 20.5l1.3-5.4A7.5 7.5 0 1 1 20.5 12.5Z"/></svg> We're here to help</p></div>
+      <div><a class="back-link" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg> Back to overview</a></div>
+      <h1>How can we help?</h1>
+      <p class="lede">Search the answers below, or open an issue on GitHub. There is no account system, so there is no password we can reset for you — which is rather the point.</p>
+    </div>
+  </section>
+  <section style="padding-top:0" data-filter-scope>
+    <div class="wrap">
+      <div class="page-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
+        <input type="search" data-filter-search placeholder="Search help articles…" aria-label="Search help articles">
+      </div>
+      <div class="filter-bar">
+        <button class="chip" type="button" data-chip="all" aria-pressed="true">All</button>
+        <button class="chip" type="button" data-chip="start" aria-pressed="false">Getting started</button>
+        <button class="chip" type="button" data-chip="privacy" aria-pressed="false">Privacy &amp; security</button>
+        <button class="chip" type="button" data-chip="backup" aria-pressed="false">Backup &amp; restore</button>
+        <button class="chip" type="button" data-chip="platforms" aria-pressed="false">Platforms</button>
+      </div>
+
+      <div style="max-width:860px;margin-inline:auto">
+      <div class="faq-group" data-group="start">
+        <h2>Getting started</h2>
+        <div class="faq">
+        <div class="faq-item" data-cat="start">
+          <h3><button class="faq-q" id="sq1" aria-expanded="false" aria-controls="sa1" type="button">
+            Is it really free?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 9 7 7 7-7"/></svg>
+          </button></h3>
+          <div class="faq-a" id="sa1" role="region" aria-labelledby="sq1"><div class="faq-a-inner">
+          <p>Yes. Free and open source, with no subscription, no paid tier and nothing to unlock. There is no account to upgrade and no data to sell — running no servers means there is very little to fund.</p>
+          </div></div>
+        </div>
+        <div class="faq-item" data-cat="start">
+          <h3><button class="faq-q" id="sq2" aria-expanded="false" aria-controls="sa2" type="button">
+            Does it work offline?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 9 7 7 7-7"/></svg>
+          </button></h3>
+          <div class="faq-a" id="sa2" role="region" aria-labelledby="sq2"><div class="faq-a-inner">
+          <p>Entirely. Importing, viewing, searching, the hidden archive, local exports and the watch companion all run on-device. The only feature that needs a network is Google Drive backup. Leave the phone in airplane mode forever and nothing else changes.</p>
+          </div></div>
+        </div>
+        <div class="faq-item" data-cat="start">
+          <h3><button class="faq-q" id="sq3" aria-expanded="false" aria-controls="sa3" type="button">
+            Does FileWall need permission to read my photos?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 9 7 7 7-7"/></svg>
+          </button></h3>
+          <div class="faq-a" id="sa3" role="region" aria-labelledby="sq3"><div class="faq-a-inner">
+          <p>No. Import runs through the system picker: you choose the files, and Android hands the app exactly those and nothing else. The app never asks for a storage permission, so it never has standing access to your gallery — check the permissions screen and you'll find nothing to revoke.</p>
+          </div></div>
+        </div>
+        </div>
+      </div>
+      <div class="faq-group" data-group="privacy">
+        <h2>Privacy &amp; security</h2>
+        <div class="faq">
+        <div class="faq-item" data-cat="privacy">
+          <h3><button class="faq-q" id="sq4" aria-expanded="false" aria-controls="sa4" type="button">
+            Can FileWall staff see my files?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 9 7 7 7-7"/></svg>
+          </button></h3>
+          <div class="faq-a" id="sa4" role="region" aria-labelledby="sq4"><div class="faq-a-inner">
+          <p>No, and not because we promise not to look. There is no FileWall server for your files to arrive at, no account tying them to you, and no code path that sends them anywhere. We have no infrastructure that touches your data.</p>
+          <p>If you turn on Drive backup, the archive goes to <em>your</em> Google Drive through <em>your</em> credentials, encrypted with your passphrase before it leaves the phone.</p>
+          </div></div>
+        </div>
+        <div class="faq-item" data-cat="privacy">
+          <h3><button class="faq-q" id="sq5" aria-expanded="false" aria-controls="sa5" type="button">
+            What happens if I lose my phone?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 9 7 7 7-7"/></svg>
+          </button></h3>
+          <div class="faq-a" id="sa5" role="region" aria-labelledby="sq5"><div class="faq-a-inner">
+          <p>Your files stay encrypted. Whoever has the phone needs to get past the device lock, and then past your passcode for the hidden archive. Pulling the app's data folder off the device gets them nothing usable: the keys live in the Keystore and do not come with the files.</p>
+          <p>Getting your own files back is a different question, and the answer is a backup. If you have an archive and its passphrase, you can restore onto a new phone. If you don't, the files are gone with the phone.</p>
+          </div></div>
+        </div>
+        <div class="faq-item" data-cat="privacy">
+          <h3><button class="faq-q" id="sq6" aria-expanded="false" aria-controls="sa6" type="button">
+            What happens after a few wrong passcode attempts?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 9 7 7 7-7"/></svg>
+          </button></h3>
+          <div class="faq-a" id="sa6" role="region" aria-labelledby="sq6"><div class="faq-a-inner">
+          <p>The hidden archive locks you out for a while after five wrong attempts, and the wait gets longer each time it happens. It is there to make guessing a four-digit code expensive rather than instant.</p>
+          </div></div>
+        </div>
+        </div>
+      </div>
+      <div class="faq-group" data-group="backup">
+        <h2>Backup &amp; restore</h2>
+        <div class="faq">
+        <div class="faq-item" data-cat="backup">
+          <h3><button class="faq-q" id="sq7" aria-expanded="false" aria-controls="sa7" type="button">
+            Why do I need a passphrase for backup when I already have a PIN?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 9 7 7 7-7"/></svg>
+          </button></h3>
+          <div class="faq-a" id="sa7" role="region" aria-labelledby="sq7"><div class="faq-a-inner">
+          <p>They do different jobs. The PIN gates the hidden archive on this device; it is checked against a PBKDF2 hash and never unlocks a file by itself, because the file keys are in the Keystore.</p>
+          <p>A backup has to survive somewhere that Keystore doesn't exist — a Drive folder, an SD card, another phone. So the archive is keyed from a passphrase you supply, stretched with PBKDF2-HMAC-SHA256 at 210,000 iterations. Without that passphrase the archive is bytes.</p>
+          </div></div>
+        </div>
+        <div class="faq-item" data-cat="backup">
+          <h3><button class="faq-q" id="sq8" aria-expanded="false" aria-controls="sa8" type="button">
+            What happens to my files if I uninstall?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 9 7 7 7-7"/></svg>
+          </button></h3>
+          <div class="faq-a" id="sa8" role="region" aria-labelledby="sq8"><div class="faq-a-inner">
+          <p>They go with it. Uninstalling removes the app's private storage — the encrypted files and the database holding their names, types and folders. Android does not keep a copy for you, and neither do we.</p>
+          <p>Export what you want to keep first, or take a backup archive. Files you exported earlier stay wherever you put them.</p>
+          </div></div>
+        </div>
+        <div class="faq-item" data-cat="backup">
+          <h3><button class="faq-q" id="sq9" aria-expanded="false" aria-controls="sa9" type="button">
+            How do I move my vault to a new phone?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 9 7 7 7-7"/></svg>
+          </button></h3>
+          <div class="faq-a" id="sa9" role="region" aria-labelledby="sq9"><div class="faq-a-inner">
+          <p>Take a backup archive on the old phone, choose a passphrase, and keep the file somewhere you control — a Drive folder, an SD card, a laptop. On the new phone, install FileWall and restore from that archive with the same passphrase.</p>
+          <p>Restores are verified before anything is written, so a truncated or tampered archive fails loudly instead of half-importing.</p>
+          </div></div>
+        </div>
+        <div class="faq-item" data-cat="backup">
+          <h3><button class="faq-q" id="sq10" aria-expanded="false" aria-controls="sa10" type="button">
+            Can I open my files without FileWall?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 9 7 7 7-7"/></svg>
+          </button></h3>
+          <div class="faq-a" id="sa10" role="region" aria-labelledby="sq10"><div class="faq-a-inner">
+          <p>Files you export are ordinary files — they leave the vault decrypted and open in whatever app you like. That is the escape hatch, and it is deliberate.</p>
+          <p>A backup archive is different: it is encrypted with your passphrase and is meant to be restored by FileWall, not opened by hand.</p>
+          </div></div>
+        </div>
+        </div>
+      </div>
+      <div class="faq-group" data-group="platforms">
+        <h2>Platforms</h2>
+        <div class="faq">
+        <div class="faq-item" data-cat="platforms">
+          <h3><button class="faq-q" id="sq11" aria-expanded="false" aria-controls="sa11" type="button">
+            Why Android first?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 9 7 7 7-7"/></svg>
+          </button></h3>
+          <div class="faq-a" id="sa11" role="region" aria-labelledby="sq11"><div class="faq-a-inner">
+          <p>Because the guarantees come from the platform itself: keys confined to the Keystore, the system file picker that removes the need for a storage permission, and the flag that keeps the vault out of screenshots and the app switcher. A cross-platform shell would have to give up some of that, so each platform gets a version built against its own secure hardware instead.</p>
+          <p>That takes time, and it is why the <a href="#platforms">other platforms</a> are still listed as in development rather than as downloads. Today there is no iOS, headset, car or web version you can install.</p>
+          </div></div>
+        </div>
+        <div class="faq-item" data-cat="platforms">
+          <h3><button class="faq-q" id="sq12" aria-expanded="false" aria-controls="sa12" type="button">
+            When will the iOS app be ready?
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 9 7 7 7-7"/></svg>
+          </button></h3>
+          <div class="faq-a" id="sa12" role="region" aria-labelledby="sq12"><div class="faq-a-inner">
+          <p>We don't know, so we are not going to print a date. iOS, watchOS, visionOS, Android XR, CarPlay, Android Auto and a web client are all in development and none of them have shipped. The <a href="platforms.html">platforms page</a> lists the current state, and it will gain a download link the day one is genuinely ready.</p>
+          </div></div>
+        </div>
+        </div>
+      </div>
+        <p class="no-results" data-no-results hidden>No answers match that. Try “backup”, “passcode” or “watch”.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section aria-labelledby="reach-h">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Still stuck</p>
+        <h2 id="reach-h">Reach a person.</h2>
+        <p class="lede">There is no ticketing system and no chatbot. Issues and discussion happen in the open, on the repository.</p>
+      </div>
+      <div class="support-cards" style="margin-top:0">
+        <article class="card support-card reveal">
+          <span class="pick-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="7" width="8" height="13" rx="4"/><path d="M4 11h4"/><path d="M16 11h4"/><path d="M4.5 17h3.5"/><path d="M16 17h3.5"/><path d="M9 6 7.5 3.5"/><path d="m15 6 1.5-2.5"/></svg></span>
+          <h3>Report a bug</h3>
+          <p>Open an issue with your Android version and what you were doing. Please don't paste anything from inside your vault.</p>
+          <a data-link="issues" href="https://github.com/wrcovid4-max/FileWallWeb/issues">Open an issue &rarr;</a>
+        </article>
+        <article class="card support-card reveal">
+          <span class="pick-ico"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.69-.22.69-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85l-.01 2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg></span>
+          <h3>Read the source</h3>
+          <p>The encryption is described in full on this site, and implemented in the open. Both are worth checking against each other.</p>
+          <a data-link="source" href="https://github.com/wrcovid4-max/FileWallWeb">Browse the code &rarr;</a>
+        </article>
+        <article class="card support-card reveal">
+          <span class="pick-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4.5h6a3 3 0 0 1 3 3V20a2.5 2.5 0 0 0-2.5-2.5H4Z"/><path d="M20 4.5h-6a3 3 0 0 0-3 3V20a2.5 2.5 0 0 1 2.5-2.5H20Z"/></svg></span>
+          <h3>Understand the design</h3>
+          <p>Key handling, the file format, and why CTR was chosen over GCM — the reasoning, not just the acronyms.</p>
+          <a href="index.html#encryption">How the encryption works &rarr;</a>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-about">
+        <a class="brand" href="index.html"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M4.6 3.4H19.4V11.5C19.4 16.4 16.2 19.8 12 21.1C7.8 19.8 4.6 16.4 4.6 11.5ZM4.6 3.4H12V12.2H4.6Z"/><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" d="M4.6 3.4H19.4V11.5C19.4 16.4 16.2 19.8 12 21.1C7.8 19.8 4.6 16.4 4.6 11.5Z"/></svg> FileWall</a>
+        <p>Your own private cloud, on your own phone. Encrypted on the device, with no account and no server behind it.</p>
+      </div>
+
+      <div class="footer-col">
+        <h2>Platforms</h2>
+        <ul>
+          <li><a href="platforms.html">Android</a></li>
+          <li><a href="platforms.html">Wear OS</a></li>
+          <li><a href="platforms.html">iOS &amp; watchOS</a></li>
+          <li><a href="platforms.html">Vision &amp; XR</a></li>
+          <li><a href="platforms.html">In the car</a></li>
+          <li><a href="platforms.html">Web app</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h2>Explore</h2>
+        <ul>
+          <li><a href="index.html#features">Features</a></li>
+          <li><a href="screens.html">Screens</a></li>
+          <li><a href="index.html#encryption">Security</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="support.html">Support</a></li>
+          <li><a href="download.html">Download</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h2>Contact</h2>
+        <ul>
+          <li><a class="with-ico" data-link="source" href="https://github.com/wrcovid4-max/FileWallWeb"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.69-.22.69-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85l-.01 2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg> Source on GitHub</a></li>
+          <li><a class="with-ico" data-link="issues" href="https://github.com/wrcovid4-max/FileWallWeb/issues"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="7" width="8" height="13" rx="4"/><path d="M4 11h4"/><path d="M16 11h4"/><path d="M4.5 17h3.5"/><path d="M16 17h3.5"/><path d="M9 6 7.5 3.5"/><path d="m15 6 1.5-2.5"/></svg> Report an issue</a></li>
+          <li><a class="with-ico" data-link="support" href="support.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 12.5a7.5 7.5 0 0 1-10.9 6.7L4 20.5l1.3-5.4A7.5 7.5 0 1 1 20.5 12.5Z"/></svg> Support &amp; FAQs</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h2>Legal</h2>
+        <ul>
+          <li><a data-link="privacy" href="https://github.com/wrcovid4-max/FileWallWeb/blob/main/PRIVACY.md">Privacy policy</a></li>
+          <li><a data-link="licence" href="https://github.com/wrcovid4-max/FileWallWeb/blob/main/LICENSE">Licence</a></li>
+          <li><a href="download.html#legal">Trademarks</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Vault Security Lab</p>
+      <p>Built for people who hand their phone to other people.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/filewall.js"></script>
+</body>
+</html>
