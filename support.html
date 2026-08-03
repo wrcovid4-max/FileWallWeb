@@ -7,7 +7,8 @@
 <meta name="description" content="Answers about FileWall's encryption, backups, the hidden archive and supported platforms — plus how to reach a person.">
 <meta name="color-scheme" content="dark light">
 <meta name="theme-color" content="#0E1626">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23B4C5FF' fill-rule='evenodd' d='M4.6 3.4H19.4V11.5C19.4 16.4 16.2 19.8 12 21.1C7.8 19.8 4.6 16.4 4.6 11.5ZM4.6 3.4H12V12.2H4.6Z'/%3E%3Cpath fill='none' stroke='%23B4C5FF' stroke-width='1.5' stroke-linejoin='round' d='M4.6 3.4H19.4V11.5C19.4 16.4 16.2 19.8 12 21.1C7.8 19.8 4.6 16.4 4.6 11.5Z'/%3E%3C/svg%3E">
+<link rel="icon" href="assets/filewall-icon-96.png">
+<link rel="apple-touch-icon" href="assets/filewall-icon.png">
 <link rel="stylesheet" href="assets/filewall.css">
 <script>
 /* Applied before first paint so a stored light theme never flashes dark. */
@@ -21,7 +22,7 @@ try { if (localStorage.getItem('filewall-theme') === 'light')
 
 <header class="site-header" id="siteHeader">
   <div class="wrap nav">
-    <a class="brand" href="index.html"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M4.6 3.4H19.4V11.5C19.4 16.4 16.2 19.8 12 21.1C7.8 19.8 4.6 16.4 4.6 11.5ZM4.6 3.4H12V12.2H4.6Z"/><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" d="M4.6 3.4H19.4V11.5C19.4 16.4 16.2 19.8 12 21.1C7.8 19.8 4.6 16.4 4.6 11.5Z"/></svg> FileWall</a>
+    <a class="brand" href="index.html"><img src="assets/filewall-icon-96.png" width="32" height="32" alt="" decoding="async"> FileWall</a>
     <nav class="nav-links" aria-label="Primary">
       <a href="index.html#features">Features</a>
       <a href="screens.html">Screens</a>
@@ -263,13 +264,18 @@ try { if (localStorage.getItem('filewall-theme') === 'light')
       </div>
     </div>
   </section>
+  <section style="padding-top:0">
+    <div class="wrap">
+      <p class="fineprint"><strong>Small print.</strong> These answers describe FileWall's current behaviour on Android and are general guidance, not a warranty or a security guarantee. Support is best-effort through public GitHub issues — there is no ticketing system, no response-time commitment, and no account, so no password or vault can be recovered for you. Never paste vault contents, passcodes or backup passphrases into an issue. See the <a href="terms.html">terms of service</a>.</p>
+    </div>
+  </section>
 </main>
 
 <footer class="site-footer">
   <div class="wrap">
     <div class="footer-top">
       <div class="footer-about">
-        <a class="brand" href="index.html"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M4.6 3.4H19.4V11.5C19.4 16.4 16.2 19.8 12 21.1C7.8 19.8 4.6 16.4 4.6 11.5ZM4.6 3.4H12V12.2H4.6Z"/><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" d="M4.6 3.4H19.4V11.5C19.4 16.4 16.2 19.8 12 21.1C7.8 19.8 4.6 16.4 4.6 11.5Z"/></svg> FileWall</a>
+        <a class="brand" href="index.html"><img src="assets/filewall-icon-96.png" width="32" height="32" alt="" decoding="async"> FileWall</a>
         <p>Your own private cloud, on your own phone. Encrypted on the device, with no account and no server behind it.</p>
       </div>
 
@@ -309,9 +315,10 @@ try { if (localStorage.getItem('filewall-theme') === 'light')
       <div class="footer-col">
         <h2>Legal</h2>
         <ul>
-          <li><a data-link="privacy" href="https://github.com/wrcovid4-max/FileWallWeb/blob/main/PRIVACY.md">Privacy policy</a></li>
+          <li><a href="privacy.html">Privacy policy</a></li>
+          <li><a href="terms.html">Terms of service</a></li>
+          <li><a href="trademarks.html">Trademarks</a></li>
           <li><a data-link="licence" href="https://github.com/wrcovid4-max/FileWallWeb/blob/main/LICENSE">Licence</a></li>
-          <li><a href="download.html#legal">Trademarks</a></li>
         </ul>
       </div>
     </div>

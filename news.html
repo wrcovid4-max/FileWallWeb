@@ -4,10 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>News &amp; release notes — FileWall</title>
-<meta name="description" content="Release notes and engineering write-ups from FileWall: encrypted video playback, screenshot blocking, scheduled backups and the reasoning behind the file format.">
+<meta name="description" content="Release notes, security changes and engineering write-ups from FileWall.">
 <meta name="color-scheme" content="dark light">
 <meta name="theme-color" content="#0E1626">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23B4C5FF' fill-rule='evenodd' d='M4.6 3.4H19.4V11.5C19.4 16.4 16.2 19.8 12 21.1C7.8 19.8 4.6 16.4 4.6 11.5ZM4.6 3.4H12V12.2H4.6Z'/%3E%3Cpath fill='none' stroke='%23B4C5FF' stroke-width='1.5' stroke-linejoin='round' d='M4.6 3.4H19.4V11.5C19.4 16.4 16.2 19.8 12 21.1C7.8 19.8 4.6 16.4 4.6 11.5Z'/%3E%3C/svg%3E">
+<link rel="icon" href="assets/filewall-icon-96.png">
+<link rel="apple-touch-icon" href="assets/filewall-icon.png">
 <link rel="stylesheet" href="assets/filewall.css">
 <script>
 /* Applied before first paint so a stored light theme never flashes dark. */
@@ -21,7 +22,7 @@ try { if (localStorage.getItem('filewall-theme') === 'light')
 
 <header class="site-header" id="siteHeader">
   <div class="wrap nav">
-    <a class="brand" href="index.html"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M4.6 3.4H19.4V11.5C19.4 16.4 16.2 19.8 12 21.1C7.8 19.8 4.6 16.4 4.6 11.5ZM4.6 3.4H12V12.2H4.6Z"/><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" d="M4.6 3.4H19.4V11.5C19.4 16.4 16.2 19.8 12 21.1C7.8 19.8 4.6 16.4 4.6 11.5Z"/></svg> FileWall</a>
+    <a class="brand" href="index.html"><img src="assets/filewall-icon-96.png" width="32" height="32" alt="" decoding="async"> FileWall</a>
     <nav class="nav-links" aria-label="Primary">
       <a href="index.html#features">Features</a>
       <a href="screens.html">Screens</a>
@@ -77,9 +78,113 @@ try { if (localStorage.getItem('filewall-theme') === 'light')
       <p class="lede">Release notes, security changes and the occasional write-up about why something was built the way it was.</p>
     </div>
   </section>
-  <!-- Dates and ordering below are placeholders for the real release history. -->
-  <section style="padding-top:0" data-filter-scope>
+<!-- ── UPDATES ──────────────────────────────────────────────────────── -->
+  <section id="updates" aria-labelledby="news-updates-h">
     <div class="wrap">
+      <div class="carousel-head reveal">
+        <div class="section-head">
+          <p class="eyebrow">At a glance</p>
+          <h2 id="news-updates-h">Recent changes</h2>
+        </div>
+        <div class="carousel-ctl">
+          <button class="pause" type="button" data-carousel-pause aria-pressed="false" aria-label="Pause the updates carousel">
+            <svg class="ico-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="7" y="5" width="3.6" height="14" rx="1.2"/><rect x="13.4" y="5" width="3.6" height="14" rx="1.2"/></svg>
+            <svg class="ico-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+          </button>
+        </div>
+      </div>
+      <p class="lede" style="margin-bottom:22px">Tap any card to turn it over.</p>
+    </div>
+    <div class="carousel reveal" data-marquee>
+      <div class="marquee-track">
+        <button class="up-card c-accent" type="button" aria-expanded="false">
+          <span class="up-inner">
+            <span class="up-face up-front">
+              <span class="up-kicker">Wear OS</span>
+              <span class="up-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="3.5"/><path d="M9 6V3.5h6V6"/><path d="M9 18v2.5h6V18"/></svg></span>
+              <span class="h3">The companion lands on the wrist</span>
+              <span class="body">Browse unlocked files from the watch. Hidden files are never sent to it.</span>
+              <span class="up-plus" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>
+            </span>
+            <span class="up-face up-back">
+              <span class="up-kicker">Wear OS</span>
+              <p>Photos open on the watch itself. Video and documents show a preview and an Open on phone button, which sends a notification rather than opening anything remotely.</p>
+            </span>
+          </span>
+        </button>
+        <button class="up-card c-indigo" type="button" aria-expanded="false">
+          <span class="up-inner">
+            <span class="up-face up-front">
+              <span class="up-kicker">Viewing</span>
+              <span class="up-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M10 9.5v5l4.5-2.5z"/></svg></span>
+              <span class="h3">Video plays from the encrypted file</span>
+              <span class="body">No temporary decrypted copy is written to disk, and scrubbing still works.</span>
+              <span class="up-plus" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>
+            </span>
+            <span class="up-face up-back">
+              <span class="up-kicker">Viewing</span>
+              <p>Playback streams straight from the ciphertext. Seeking decrypts only the region you jump to, so a long video plays in constant memory.</p>
+            </span>
+          </span>
+        </button>
+        <button class="up-card c-photos" type="button" aria-expanded="false">
+          <span class="up-inner">
+            <span class="up-face up-front">
+              <span class="up-kicker">Privacy</span>
+              <span class="up-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12s3.5-6.5 9-6.5c1.6 0 3 .5 4.2 1.2"/><path d="M20.4 9.1C20.8 9.7 21 12 21 12s-3.5 6.5-9 6.5c-1.4 0-2.7-.4-3.8-.9"/><path d="M4 4l16 16"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg></span>
+              <span class="h3">Screenshots off by default</span>
+              <span class="body">Which also keeps the vault out of recordings and the app-switcher preview.</span>
+              <span class="up-plus" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>
+            </span>
+            <span class="up-face up-back">
+              <span class="up-kicker">Privacy</span>
+              <p>The vault sets the platform's secure-window flag. Turn it on only if you actually need to capture the screen.</p>
+            </span>
+          </span>
+        </button>
+        <button class="up-card c-videos" type="button" aria-expanded="false">
+          <span class="up-inner">
+            <span class="up-face up-front">
+              <span class="up-kicker">Backup</span>
+              <span class="up-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 18.5A4 4 0 0 1 6 10.6a5.5 5.5 0 0 1 10.6-1.6A3.8 3.8 0 0 1 18.5 18.5"/><path d="M12 20v-8"/><path d="m9 15 3-3 3 3"/></svg></span>
+              <span class="h3">Daily Wi-Fi-only backups</span>
+              <span class="body">Schedule an encrypted archive to your own Drive, or export it anywhere.</span>
+              <span class="up-plus" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>
+            </span>
+            <span class="up-face up-back">
+              <span class="up-kicker">Backup</span>
+              <p>The archive is encrypted with your passphrase before it is uploaded, and restores are verified before anything is written.</p>
+            </span>
+          </span>
+        </button>
+        <button class="up-card c-docs" type="button" aria-expanded="false">
+          <span class="up-inner">
+            <span class="up-face up-front">
+              <span class="up-kicker">Storage</span>
+              <span class="up-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3.5 16.5 5.5-6 4 4 7.5-8"/><path d="M15.5 6.5h5v5"/></svg></span>
+              <span class="h3">Live storage breakdown</span>
+              <span class="body">See exactly what photos, videos and documents are costing you.</span>
+              <span class="up-plus" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>
+            </span>
+            <span class="up-face up-back">
+              <span class="up-kicker">Storage</span>
+              <p>Photos, videos and documents are tracked separately, so it is obvious where the space actually went.</p>
+            </span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section data-filter-scope aria-labelledby="posts-h">
+    <div class="wrap">
+      <div class="section-head reveal" style="text-align:center;max-width:none">
+        <p class="eyebrow">Archive</p>
+        <h2 id="posts-h">Every post</h2>
+      </div>
+
       <div class="page-search">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
         <input type="search" data-filter-search placeholder="Search articles…" aria-label="Search articles">
@@ -91,74 +196,26 @@ try { if (localStorage.getItem('filewall-theme') === 'light')
         <button class="chip" type="button" data-chip="engineering" aria-pressed="false">Engineering</button>
       </div>
 
-      <article class="news-featured reveal" style="margin-top:clamp(36px,5vw,56px)" data-cat="features">
-        <div class="news-art"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="3.5"/><path d="M9 6V3.5h6V6"/><path d="M9 18v2.5h6V18"/></svg></div>
-        <div class="news-body">
-          <p class="news-tag">Announcements</p>
-          <h2>The Wear OS companion is here</h2>
-          <p>Browse your unlocked files from the watch, and open photos right there. Video and documents show a preview plus an <strong>Open on phone</strong> button that sends a notification rather than opening anything remotely.</p>
-          <p style="margin-top:14px">Hidden files never reach the watch. They are not in the data it receives, so a lost watch cannot even ask for them.</p>
-          <p class="news-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><time datetime="2026-06-15">Jun 15, 2026</time></p>
-        </div>
-      </article>
-
       <div class="news-grid">
+        <!-- Article template — copy, uncomment and fill in:
         <article class="news-card reveal" data-cat="features">
-          <div class="news-art"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M10 9.5v5l4.5-2.5z"/></svg></div>
+          <div class="news-art">ICON SVG HERE</div>
           <div class="inner">
             <p class="news-tag">Features</p>
-            <h3>Video plays straight from the encrypted file</h3>
-            <p>Playback now streams from the ciphertext, so no temporary decrypted copy is ever written to disk. Seeking decrypts only the region you jump to, which is what makes scrubbing a long video practical in constant memory.</p>
-            <p class="news-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><time datetime="2026-05-18">May 18, 2026</time></p>
+            <h3>Headline goes here</h3>
+            <p>One or two sentences of summary.</p>
+            <p class="news-meta">CLOCK ICON<time datetime="2026-01-31">Jan 31, 2026</time></p>
           </div>
         </article>
-        <article class="news-card reveal" data-cat="security">
-          <div class="news-art"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12s3.5-6.5 9-6.5c1.6 0 3 .5 4.2 1.2"/><path d="M20.4 9.1C20.8 9.7 21 12 21 12s-3.5 6.5-9 6.5c-1.4 0-2.7-.4-3.8-.9"/><path d="M4 4l16 16"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg></div>
-          <div class="inner">
-            <p class="news-tag">Security</p>
-            <h3>Screenshots are blocked by default</h3>
-            <p>The vault sets the platform's secure-window flag, which also keeps it out of screen recordings and the app-switcher preview. It can be turned on if you genuinely need to capture the screen.</p>
-            <p class="news-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><time datetime="2026-04-27">Apr 27, 2026</time></p>
-          </div>
-        </article>
-        <article class="news-card reveal" data-cat="features">
-          <div class="news-art"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 18.5A4 4 0 0 1 6 10.6a5.5 5.5 0 0 1 10.6-1.6A3.8 3.8 0 0 1 18.5 18.5"/><path d="M12 20v-8"/><path d="m9 15 3-3 3 3"/></svg></div>
-          <div class="inner">
-            <p class="news-tag">Features</p>
-            <h3>Daily Wi-Fi-only backups to your own Drive</h3>
-            <p>Backups can now run on a schedule instead of only on demand. The archive is encrypted with your passphrase before it is uploaded, and restores are verified before anything is written.</p>
-            <p class="news-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><time datetime="2026-03-30">Mar 30, 2026</time></p>
-          </div>
-        </article>
-        <article class="news-card reveal" data-cat="security">
-          <div class="news-art"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg></div>
-          <div class="inner">
-            <p class="news-tag">Security</p>
-            <h3>Escalating lockout on the hidden archive</h3>
-            <p>Five wrong passcode attempts now start a lockout that grows each time it happens, so guessing a short code costs real time rather than none.</p>
-            <p class="news-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><time datetime="2026-03-11">Mar 11, 2026</time></p>
-          </div>
-        </article>
-        <article class="news-card reveal" data-cat="engineering">
-          <div class="news-art"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4.5h6a3 3 0 0 1 3 3V20a2.5 2.5 0 0 0-2.5-2.5H4Z"/><path d="M20 4.5h-6a3 3 0 0 0-3 3V20a2.5 2.5 0 0 1 2.5-2.5H20Z"/></svg></div>
-          <div class="inner">
-            <p class="news-tag">Engineering</p>
-            <h3>Why we chose CTR and a separate MAC over GCM</h3>
-            <p>GCM will not release verified plaintext until it has buffered the whole message — for a video that means holding the entire file in RAM. This is the reasoning behind the trailing HMAC instead.</p>
-            <p class="news-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><time datetime="2026-02-24">Feb 24, 2026</time></p>
-          </div>
-        </article>
-        <article class="news-card reveal" data-cat="features">
-          <div class="news-art"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3.5 16.5 5.5-6 4 4 7.5-8"/><path d="M15.5 6.5h5v5"/></svg></div>
-          <div class="inner">
-            <p class="news-tag">Features</p>
-            <h3>Live storage breakdown by category</h3>
-            <p>The security screen now shows what photos, videos and documents are each costing you, so it is obvious where the space went.</p>
-            <p class="news-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><time datetime="2026-02-02">Feb 2, 2026</time></p>
-          </div>
-        </article>
+        -->
       </div>
-      <p class="no-results" data-no-results hidden>No articles match that.</p>
+
+      <p class="no-results" data-no-results>No posts yet. Release notes will appear here as they are written.</p>
+    </div>
+  </section>
+  <section style="padding-top:0">
+    <div class="wrap">
+      <p class="fineprint"><strong>Small print.</strong> Posts here describe changes to FileWall at the time of writing and are not a roadmap; nothing on this page is a commitment to ship a feature, keep a behaviour, or hit a date. Where a post describes a platform other than Android or Wear OS, that platform is still in development. Details can go out of date as the app changes — the <a href="index.html#encryption">security section</a> and the source are the current record.</p>
     </div>
   </section>
 </main>
@@ -167,7 +224,7 @@ try { if (localStorage.getItem('filewall-theme') === 'light')
   <div class="wrap">
     <div class="footer-top">
       <div class="footer-about">
-        <a class="brand" href="index.html"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M4.6 3.4H19.4V11.5C19.4 16.4 16.2 19.8 12 21.1C7.8 19.8 4.6 16.4 4.6 11.5ZM4.6 3.4H12V12.2H4.6Z"/><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" d="M4.6 3.4H19.4V11.5C19.4 16.4 16.2 19.8 12 21.1C7.8 19.8 4.6 16.4 4.6 11.5Z"/></svg> FileWall</a>
+        <a class="brand" href="index.html"><img src="assets/filewall-icon-96.png" width="32" height="32" alt="" decoding="async"> FileWall</a>
         <p>Your own private cloud, on your own phone. Encrypted on the device, with no account and no server behind it.</p>
       </div>
 
@@ -207,9 +264,10 @@ try { if (localStorage.getItem('filewall-theme') === 'light')
       <div class="footer-col">
         <h2>Legal</h2>
         <ul>
-          <li><a data-link="privacy" href="https://github.com/wrcovid4-max/FileWallWeb/blob/main/PRIVACY.md">Privacy policy</a></li>
+          <li><a href="privacy.html">Privacy policy</a></li>
+          <li><a href="terms.html">Terms of service</a></li>
+          <li><a href="trademarks.html">Trademarks</a></li>
           <li><a data-link="licence" href="https://github.com/wrcovid4-max/FileWallWeb/blob/main/LICENSE">Licence</a></li>
-          <li><a href="download.html#legal">Trademarks</a></li>
         </ul>
       </div>
     </div>

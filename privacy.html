@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — FileWall</title>
+<meta name="description" content="How FileWall collects, uses and protects your information. No analytics, no ads, no sale of personal information.">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0E1626">
+<link rel="icon" href="assets/filewall-icon-96.png">
+<link rel="apple-touch-icon" href="assets/filewall-icon.png">
+<link rel="stylesheet" href="assets/filewall.css">
+<script>
+/* Applied before first paint so a stored light theme never flashes dark. */
+document.documentElement.classList.add('js');
+try { if (localStorage.getItem('filewall-theme') === 'light')
+        document.documentElement.setAttribute('data-theme', 'light'); } catch (e) {}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header" id="siteHeader">
+  <div class="wrap nav">
+    <a class="brand" href="index.html"><img src="assets/filewall-icon-96.png" width="32" height="32" alt="" decoding="async"> FileWall</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html#features">Features</a>
+      <a href="screens.html">Screens</a>
+      <a href="platforms.html">Platforms</a>
+      <a href="index.html#encryption">Security</a>
+      <a href="news.html">News</a>
+      <a href="support.html">Support</a>
+      <a href="download.html">Download</a>
+    </nav>
+    <div class="nav-tools">
+      <button class="icon-btn" type="button" data-search-open aria-label="Search this site"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg></button>
+      <button class="icon-btn" type="button" data-theme-toggle aria-label="Switch to light theme"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2"/><path d="M12 19.3v2.2"/><path d="M4.2 4.2l1.6 1.6"/><path d="M18.2 18.2l1.6 1.6"/><path d="M2.5 12h2.2"/><path d="M19.3 12h2.2"/><path d="M4.2 19.8l1.6-1.6"/><path d="M18.2 5.8l1.6-1.6"/></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13.5A8.2 8.2 0 0 1 10.5 4a8.2 8.2 0 1 0 9.5 9.5Z"/></svg></button>
+      <button class="icon-btn nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="navDrawer" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg></button>
+    </div>
+    <a class="btn btn-primary btn-sm" data-link="download" href="download.html">Get FileWall</a>
+  </div>
+  <div class="nav-drawer" id="navDrawer">
+    <nav aria-label="Mobile">
+      <ul>
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="screens.html">Screens</a></li>
+        <li><a href="platforms.html">Platforms</a></li>
+        <li><a href="index.html#encryption">Security</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="support.html">Support</a></li>
+        <li><a href="download.html">Download</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-primary" data-link="download" href="download.html">Get FileWall</a>
+  </div>
+</header>
+
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search FileWall" hidden>
+  <div class="search-panel">
+    <div class="search-field">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
+      <input id="searchInput" type="search" placeholder="Search FileWall…" autocomplete="off" aria-label="Search FileWall" aria-describedby="searchEmpty">
+      <button class="icon-btn" type="button" data-search-close aria-label="Close search" style="width:32px;height:32px;border:0">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12"/><path d="M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <ul class="search-results" id="searchResults"></ul>
+    <p class="search-empty" id="searchEmpty" hidden>Nothing matches that. Try “backup”, “keys” or “watch”.</p>
+  </div>
+</div>
+
+<main id="main">
+<section class="page-hero">
+    <div class="wrap">
+      <div><p class="pill-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M4.6 3.4H19.4V11.5C19.4 16.4 16.2 19.8 12 21.1C7.8 19.8 4.6 16.4 4.6 11.5Z"/><path d="M4.6 3.4H12V12.2H4.6Z" fill="currentColor" stroke="none"/></svg> Legal</p></div>
+      <div><a class="back-link" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg> Back to overview</a></div>
+      <h1>Privacy Policy</h1>
+      <p class="lede">WR COVID TM (&ldquo;we,&rdquo; &ldquo;our,&rdquo; or &ldquo;us&rdquo;) respects your privacy. This Privacy Policy explains how FileWall collects, uses, and protects your information.</p>
+    </div>
+  </section>
+  <section style="padding-top:0;padding-bottom:0">
+    <div class="wrap">
+      <div class="legal-doc">
+        <p class="meta">
+          <span>Effective date: <b>August 3, 2026</b></span>
+          <span>Developer: <b>WR COVID TM</b></span>
+          <span>Contact: <b><a href="mailto:wr.covid.4@gmail.com">wr.covid.4@gmail.com</a></b></span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:clamp(30px,4vw,44px)">
+    <div class="wrap">
+      <div class="legal-doc">
+        <nav class="legal-toc" aria-label="Sections">
+        <a href="#s1">1. Information We Collect</a>
+        <a href="#s2">2. Files</a>
+        <a href="#s3">3. Information We Do Not Collect</a>
+        <a href="#s4">4. How We Use Information</a>
+        <a href="#s5">5. Google Sign-In</a>
+        <a href="#s6">6. Data Storage</a>
+        <a href="#s7">7. Security</a>
+        <a href="#s8">8. Data Retention</a>
+        <a href="#s9">9. Children's Privacy</a>
+        <a href="#s10">10. International Users</a>
+        <a href="#s11">11. Changes to This Privacy Policy</a>
+        <a href="#s12">12. Contact</a>
+        </nav>
+      <h2 id="s1">1. Information We Collect</h2>
+      <p>Depending on how you use FileWall, we may collect:</p>
+      <ul>
+        <li>Your Google Account information if you choose to sign in using Google.</li>
+        <li>Basic account identifiers required for authentication.</li>
+        <li>App settings and preferences stored on your device.</li>
+      </ul>
+
+      <h2 id="s2">2. Files</h2>
+      <p>FileWall stores your files locally on your device.</p>
+      <p>We do not claim ownership of your files.</p>
+
+      <h2 id="s3">3. Information We Do Not Collect</h2>
+      <p>At the time of this Policy, FileWall does not:</p>
+      <ul>
+        <li>Collect analytics.</li>
+        <li>Collect crash reports.</li>
+        <li>Display advertisements.</li>
+        <li>Sell personal information.</li>
+        <li>Use your data for advertising.</li>
+        <li>Use your files to train artificial intelligence or machine learning models.</li>
+      </ul>
+
+      <h2 id="s4">4. How We Use Information</h2>
+      <p>Information is used only to:</p>
+      <ul>
+        <li>Authenticate your optional Google Sign-In.</li>
+        <li>Operate the App.</li>
+        <li>Maintain your preferences.</li>
+        <li>Improve security and functionality.</li>
+      </ul>
+
+      <h2 id="s5">5. Google Sign-In</h2>
+      <p>If you choose to use Google Sign-In, authentication is provided through Google's secure services.</p>
+      <p>Your use of Google Sign-In is also subject to Google's applicable policies and terms.</p>
+
+      <h2 id="s6">6. Data Storage</h2>
+      <p>Files managed by FileWall are stored locally on your device unless you intentionally move or share them using another service.</p>
+
+      <h2 id="s7">7. Security</h2>
+      <p>We take reasonable technical and organisational measures to protect information processed by the App. However, no electronic storage or transmission method is completely secure.</p>
+
+      <h2 id="s8">8. Data Retention</h2>
+      <p>Information remains on your device until you delete it or uninstall FileWall.</p>
+      <p>Google authentication information is retained only as necessary to maintain your signed-in session.</p>
+
+      <h2 id="s9">9. Children's Privacy</h2>
+      <p>FileWall is intended for users who are 16 years of age or older.</p>
+      <p>We do not knowingly collect personal information from children under the age of 16.</p>
+
+      <h2 id="s10">10. International Users</h2>
+      <p>By using FileWall, you acknowledge that information may be processed in accordance with applicable laws where required for services you choose to use.</p>
+
+      <h2 id="s11">11. Changes to This Privacy Policy</h2>
+      <p>We may revise this Privacy Policy from time to time. Updated versions will become effective upon publication.</p>
+
+      <h2 id="s12">12. Contact</h2>
+      <p>Developer: WR COVID TM</p>
+      <p>Email: <a href="mailto:wr.covid.4@gmail.com">wr.covid.4@gmail.com</a></p>
+      <p>Website: <a href="https://wrcovid4-max.github.io/FileWallWeb/">https://wrcovid4-max.github.io/FileWallWeb/</a></p>
+
+      </div>
+    </div>
+  </section>
+  <section style="padding-top:0">
+    <div class="wrap">
+      <p class="fineprint"><strong>Small print.</strong> This policy covers the FileWall app only. It does not cover Google's services, your device operating system, or any third-party app you export files into — once a file leaves the vault, this policy no longer governs it. &ldquo;We do not collect analytics&rdquo; describes the app as of the effective date above; if that ever changes, the policy changes with it. This website is served as static files by GitHub Pages, whose own logging is outside our control. See also the <a href="terms.html">terms of service</a>.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-about">
+        <a class="brand" href="index.html"><img src="assets/filewall-icon-96.png" width="32" height="32" alt="" decoding="async"> FileWall</a>
+        <p>Your own private cloud, on your own phone. Encrypted on the device, with no account and no server behind it.</p>
+      </div>
+
+      <div class="footer-col">
+        <h2>Platforms</h2>
+        <ul>
+          <li><a href="platforms.html">Android</a></li>
+          <li><a href="platforms.html">Wear OS</a></li>
+          <li><a href="platforms.html">iOS &amp; watchOS</a></li>
+          <li><a href="platforms.html">Vision &amp; XR</a></li>
+          <li><a href="platforms.html">In the car</a></li>
+          <li><a href="platforms.html">Web app</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h2>Explore</h2>
+        <ul>
+          <li><a href="index.html#features">Features</a></li>
+          <li><a href="screens.html">Screens</a></li>
+          <li><a href="index.html#encryption">Security</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="support.html">Support</a></li>
+          <li><a href="download.html">Download</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h2>Contact</h2>
+        <ul>
+          <li><a class="with-ico" data-link="source" href="https://github.com/wrcovid4-max/FileWallWeb"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.69-.22.69-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85l-.01 2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg> Source on GitHub</a></li>
+          <li><a class="with-ico" data-link="issues" href="https://github.com/wrcovid4-max/FileWallWeb/issues"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="7" width="8" height="13" rx="4"/><path d="M4 11h4"/><path d="M16 11h4"/><path d="M4.5 17h3.5"/><path d="M16 17h3.5"/><path d="M9 6 7.5 3.5"/><path d="m15 6 1.5-2.5"/></svg> Report an issue</a></li>
+          <li><a class="with-ico" data-link="support" href="support.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 12.5a7.5 7.5 0 0 1-10.9 6.7L4 20.5l1.3-5.4A7.5 7.5 0 1 1 20.5 12.5Z"/></svg> Support &amp; FAQs</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h2>Legal</h2>
+        <ul>
+          <li><a href="privacy.html">Privacy policy</a></li>
+          <li><a href="terms.html">Terms of service</a></li>
+          <li><a href="trademarks.html">Trademarks</a></li>
+          <li><a data-link="licence" href="https://github.com/wrcovid4-max/FileWallWeb/blob/main/LICENSE">Licence</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Vault Security Lab</p>
+      <p>Built for people who hand their phone to other people.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/filewall.js"></script>
+</body>
+</html>
