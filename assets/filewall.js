@@ -136,52 +136,57 @@
     });
   }
 
-  /* ── Updates carousel ───────────────────────────────────────────────── */
-  var track = $('#updatesTrack');
+  /* ── Updates carousel ─────────────────────────────────────────────────
+     A CSS marquee, not a scroller: the track holds the cards twice and
+     translates by exactly -50%, so the loop is seamless with no pause at
+     the seam. JS only handles pausing and the flip interaction. */
+  $$('[data-marquee]').forEach(function (carousel) {
+    var track = $('.marquee-track', carousel);
+    if (!track) return;
 
-  if (track) {
-    var pauseBtn = $('[data-carousel-pause]');
-    var step = function () {
-      var card = track.firstElementChild;
-      return card ? card.getBoundingClientRect().width + 18 : 300;
-    };
-
-    $$('[data-carousel-prev]').forEach(function (b) {
-      b.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
+    /* Duplicate the set so the -50% translation lands on an identical frame.
+       The copy is decorative: hidden from AT and skipped by the tab order. */
+    var originals = $$('.up-card', track);
+    originals.forEach(function (card) {
+      var clone = card.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      clone.setAttribute('tabindex', '-1');
+      clone.dataset.clone = 'true';
+      track.appendChild(clone);
     });
-    $$('[data-carousel-next]').forEach(function (b) {
-      b.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
-    });
 
-    var timer = null;
-    function advance() {
-      var atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
-      track.scrollTo({ left: atEnd ? 0 : track.scrollLeft + step(), behavior: 'smooth' });
-    }
-    function play()  { if (!timer) timer = setInterval(advance, 4500); }
-    function stop()  { clearInterval(timer); timer = null; }
-
-    if (pauseBtn) {
-      pauseBtn.addEventListener('click', function () {
-        var paused = pauseBtn.getAttribute('aria-pressed') === 'true';
-        pauseBtn.setAttribute('aria-pressed', paused ? 'false' : 'true');
-        if (paused) play(); else stop();
+    var paused = false;
+    function setPaused(v) {
+      paused = v;
+      carousel.classList.toggle('is-paused', v);
+      $$('[data-carousel-pause]').forEach(function (b) {
+        b.setAttribute('aria-pressed', v ? 'true' : 'false');
+        b.setAttribute('aria-label', v ? 'Resume the updates carousel' : 'Pause the updates carousel');
       });
     }
 
-    /* Autoplay is motion the user did not ask for: off under reduced-motion. */
-    if (reduced.matches) {
-      if (pauseBtn) pauseBtn.setAttribute('aria-pressed', 'true');
-    } else {
-      play();
-      track.addEventListener('mouseenter', stop);
-      track.addEventListener('focusin', stop);
-      track.addEventListener('mouseleave', function () {
-        if (pauseBtn && pauseBtn.getAttribute('aria-pressed') === 'true') return;
-        play();
-      });
-    }
-  }
+    $$('[data-carousel-pause]').forEach(function (b) {
+      b.addEventListener('click', function () { setPaused(!paused); });
+    });
+
+    /* Hold still while someone is reading or interacting. */
+    carousel.addEventListener('mouseenter', function () { carousel.classList.add('is-paused'); });
+    carousel.addEventListener('mouseleave', function () { if (!paused) carousel.classList.remove('is-paused'); });
+    carousel.addEventListener('focusin',  function () { carousel.classList.add('is-paused'); });
+    carousel.addEventListener('focusout', function () { if (!paused) carousel.classList.remove('is-paused'); });
+
+    /* Flip a card to reveal the longer note on its back. */
+    track.addEventListener('click', function (e) {
+      var card = e.target.closest('.up-card');
+      if (!card) return;
+      var open = card.getAttribute('aria-expanded') === 'true';
+      card.setAttribute('aria-expanded', open ? 'false' : 'true');
+      if (!open) carousel.classList.add('is-paused');
+      else if (!paused) carousel.classList.remove('is-paused');
+    });
+
+    if (reduced.matches) setPaused(true);
+  });
 
   /* ── Filter chips + in-page search (support, news) ───────────────────── */
   $$('[data-filter-scope]').forEach(function (scope) {

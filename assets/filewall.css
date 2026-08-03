@@ -401,6 +401,12 @@ section[id]{scroll-margin-top:88px}
 
 .plat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .plat-grid.now{grid-template-columns:repeat(2,1fr);max-width:660px}
+.plat-grid.home{grid-template-columns:repeat(5,1fr)}
+@media (max-width:1100px){ .plat-grid.home{grid-template-columns:repeat(3,1fr)} }
+@media (max-width:760px){ .plat-grid.home{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:430px){ .plat-grid.home{grid-template-columns:1fr} }
+.plat-grid.home .plat{padding:20px}
+.plat-grid.home h3{font-size:1rem}
 @media (max-width:900px){ .plat-grid{grid-template-columns:1fr 1fr} }
 @media (max-width:460px){ .plat-grid,.plat-grid.now{grid-template-columns:1fr} }
 
@@ -556,6 +562,8 @@ html{scroll-behavior:smooth}
   --glow:rgba(74,19,145,.30);
   --shadow:rgba(0,0,0,.85);
   --chip-bg:rgba(180,197,255,.07);
+  --card-hover:#1C2942;
+  --lift-shadow:0 18px 40px -20px rgba(0,0,0,.75);
   color-scheme:dark;
 }
 :root[data-theme="light"]{
@@ -565,13 +573,15 @@ html{scroll-behavior:smooth}
   --primary-ink:#2E1B84;
   --text:#0F1626;
   --muted:#4B586F;
-  --photos:#2E7D32;
+  --photos:#1B5E20;
   --videos:#1565C0;
   --docs:#8A6100;
   --header-bg:rgba(242,245,252,.86);
   --glow:rgba(74,19,145,.10);
   --shadow:rgba(16,23,40,.20);
   --chip-bg:rgba(46,27,132,.06);
+  --card-hover:#FFFFFF;
+  --lift-shadow:0 18px 40px -22px rgba(16,23,40,.35);
   color-scheme:light;
 }
 .site-header{background:var(--header-bg)}
@@ -1011,3 +1021,163 @@ html{scroll-behavior:smooth}
   border:1px solid var(--border);font-size:8.5px;font-weight:750;color:var(--primary-ink);
 }
 .ph-dbtns span.danger{background:rgba(240,150,150,.16);border-color:transparent;color:#F0A6A6}
+
+
+/* ── Interactive panels: lift and brighten on hover / keyboard focus ───── */
+.card,.pick,.plat,.not,.news-card,.support-card,.screen-item .phone,.legal li{
+  transition:transform .25s ease,border-color .25s ease,background-color .25s ease,box-shadow .25s ease;
+}
+.card:hover,.pick:hover,.plat:hover,.not:hover,.news-card:hover,
+.card:focus-within,.pick:focus-within,.plat:focus-within,.news-card:focus-within{
+  transform:translateY(-4px);
+  background:var(--card-hover);
+  border-color:var(--primary-ink);
+  box-shadow:var(--lift-shadow);
+}
+.screen-item .phone{cursor:default}
+.screen-item:hover .phone{transform:translateY(-6px);box-shadow:0 46px 90px -40px rgba(0,0,0,.9),0 0 0 8px rgba(20,30,49,.55)}
+.plat.is-live:hover{border-color:var(--photos)}
+.legal li:hover{color:var(--text)}
+@media (prefers-reduced-motion:reduce){
+  .card:hover,.pick:hover,.plat:hover,.not:hover,.news-card:hover,
+  .screen-item:hover .phone{transform:none}
+}
+
+/* ── Brand logo ───────────────────────────────────────────────────────── */
+.brand img{
+  width:32px;height:32px;flex:none;border-radius:8px;display:block;
+  transition:transform .25s ease;
+}
+.brand:hover img{transform:scale(1.06) rotate(-2deg)}
+.footer-about .brand img{width:38px;height:38px;border-radius:10px}
+
+/* ── "In development" pill must never wrap ────────────────────────────── */
+.pick .btn{white-space:nowrap;padding-inline:14px}
+.pick .btn[aria-disabled="true"]{font-size:.82rem;letter-spacing:-0.005em}
+.plat-status{white-space:nowrap}
+
+/* ── Continuous marquee carousel ──────────────────────────────────────── */
+.carousel{
+  display:block;overflow:hidden;position:relative;
+  padding-block:6px 14px;
+  scroll-snap-type:none;
+  /* fade the two ends so cards enter and leave rather than pop */
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+}
+.marquee-track{
+  display:flex;width:max-content;
+  animation:fw-marquee 64s linear infinite;
+  will-change:transform;
+}
+.carousel.is-paused .marquee-track{animation-play-state:paused}
+/* No gap property: the duplicated set must be exactly 50% of the track for
+   the loop to be seamless, so spacing lives on the card's margin instead. */
+@keyframes fw-marquee{ from{transform:translateX(0)} to{transform:translateX(-50%)} }
+@media (prefers-reduced-motion:reduce){
+  .carousel{overflow-x:auto;-webkit-mask-image:none;mask-image:none}
+  .marquee-track{animation:none}
+}
+
+/* ── Flip cards ───────────────────────────────────────────────────────── */
+.up-card{
+  flex:0 0 clamp(240px,26vw,290px);
+  margin-right:18px;
+  aspect-ratio:3/4;
+  background:none;border:0;padding:0;
+  perspective:1200px;
+  cursor:pointer;font-family:inherit;text-align:left;
+  -webkit-tap-highlight-color:transparent;
+}
+.up-inner{
+  position:relative;width:100%;height:100%;
+  transform-style:preserve-3d;
+  transition:transform .65s cubic-bezier(.4,.2,.2,1);
+}
+.up-card[aria-expanded="true"] .up-inner{transform:rotateY(180deg)}
+.up-face{
+  position:absolute;inset:0;
+  -webkit-backface-visibility:hidden;backface-visibility:hidden;
+  border-radius:var(--r-card);border:1px solid var(--border);
+  padding:24px;overflow:hidden;
+  display:flex;flex-direction:column;color:#EDF1FA;
+  transition:box-shadow .25s ease;
+}
+.up-card:hover .up-face{box-shadow:0 20px 44px -22px rgba(0,0,0,.8)}
+.up-face::after{
+  content:"";position:absolute;right:-22%;top:-16%;width:74%;aspect-ratio:1;
+  border-radius:50%;background:rgba(255,255,255,.07);
+}
+.up-front{padding-bottom:70px}
+.up-back{transform:rotateY(180deg);justify-content:center}
+.up-back p{font-size:.95rem;color:rgba(237,241,250,.92);position:relative}
+.up-face .h3{
+  font-size:1.06rem;font-weight:800;letter-spacing:-0.02em;line-height:1.2;position:relative;
+}
+.up-face .body{
+  margin-top:8px;font-size:.88rem;line-height:1.5;
+  color:rgba(237,241,250,.82);position:relative;
+}
+.up-face .up-icon{margin:auto 0 14px;width:44px;height:44px;color:#EDF1FA;position:relative}
+.up-face .up-icon svg{width:100%;height:100%}
+.up-back .up-kicker{margin-bottom:12px}
+.up-card.c-accent .up-face{background:linear-gradient(155deg,#4A1391,#2C0C58)}
+.up-card.c-indigo .up-face{background:linear-gradient(155deg,#2F3A96,#1B2154)}
+.up-card.c-photos .up-face{background:linear-gradient(155deg,#2F6E33,#17361A)}
+.up-card.c-videos .up-face{background:linear-gradient(155deg,#16559C,#0D2E55)}
+.up-card.c-docs   .up-face{background:linear-gradient(155deg,#8A6100,#4A3400)}
+.up-plus{
+  position:absolute;right:18px;bottom:18px;
+  width:34px;height:34px;border-radius:50%;
+  display:grid;place-items:center;
+  background:rgba(237,241,250,.16);color:#EDF1FA;
+  transition:transform .3s ease,background-color .25s ease;
+}
+.up-plus svg{width:16px;height:16px}
+.up-card:hover .up-plus{background:rgba(237,241,250,.3);transform:scale(1.12)}
+.up-card[aria-expanded="true"] .up-plus{transform:rotate(45deg)}
+.up-card:focus-visible{outline:2px solid var(--primary-ink);outline-offset:4px;border-radius:var(--r-card)}
+@media (prefers-reduced-motion:reduce){
+  .up-inner{transition:none}
+  .up-card:hover .up-plus{transform:none}
+}
+
+/* ── Fine print ───────────────────────────────────────────────────────── */
+.fineprint{
+  margin-top:clamp(30px,4vw,44px);
+  padding-top:20px;border-top:1px solid var(--border);
+  color:var(--muted);font-size:.82rem;line-height:1.6;max-width:88ch;
+}
+.fineprint strong{color:var(--text);font-weight:700}
+.fineprint a{font-weight:600}
+
+/* ── Legal document pages ─────────────────────────────────────────────── */
+.legal-doc{max-width:78ch;margin-inline:auto}
+.legal-doc h2{
+  font-size:clamp(1.15rem,2.2vw,1.42rem);
+  margin:clamp(34px,4vw,48px) 0 14px;
+}
+.legal-doc h2:first-of-type{margin-top:0}
+.legal-doc p{color:var(--muted);margin-bottom:14px}
+.legal-doc ul{margin:0 0 16px}
+.legal-doc ul li{
+  position:relative;padding-left:20px;color:var(--muted);padding-block:4px;
+}
+.legal-doc ul li::before{
+  content:"";position:absolute;left:2px;top:.85em;
+  width:5px;height:5px;border-radius:50%;background:var(--primary-ink);opacity:.75;
+}
+.legal-doc .meta{
+  display:flex;flex-wrap:wrap;gap:10px 24px;
+  padding:16px 20px;border:1px solid var(--border);border-radius:var(--r-sm);
+  background:var(--card);color:var(--muted);font-size:.88rem;margin-bottom:8px;
+}
+.legal-doc .meta b{color:var(--text);font-weight:700}
+.legal-toc{
+  display:flex;flex-wrap:wrap;gap:8px;margin-bottom:clamp(30px,4vw,44px);
+}
+.legal-toc a{
+  padding:7px 14px;border-radius:999px;border:1px solid var(--border);
+  color:var(--muted);font-size:.82rem;font-weight:650;
+}
+.legal-toc a:hover{color:var(--primary-ink);border-color:var(--primary-ink);text-decoration:none}
