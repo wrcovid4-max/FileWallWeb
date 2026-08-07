@@ -143,6 +143,9 @@
   $$('[data-marquee]').forEach(function (carousel) {
     var track = $('.marquee-track', carousel);
     if (!track) return;
+    /* The pause/prev/next controls live in the section header, outside the
+       marquee element itself, so bind them against the whole section. */
+    var scope = carousel.closest('section') || carousel.parentNode;
 
     /* Duplicate the set so wrapping at -50% lands on an identical frame.
        The copy is decorative: hidden from AT and skipped by the tab order. */
@@ -170,18 +173,18 @@
 
     function setPaused(v) {
       userPaused = v;
-      $$('[data-carousel-pause]', carousel).forEach(function (b) {
+      $$('[data-carousel-pause]', scope).forEach(function (b) {
         b.setAttribute('aria-pressed', v ? 'true' : 'false');
         b.setAttribute('aria-label', v ? 'Resume the updates carousel' : 'Pause the updates carousel');
       });
     }
-    $$('[data-carousel-pause]', carousel).forEach(function (b) {
+    $$('[data-carousel-pause]', scope).forEach(function (b) {
       b.addEventListener('click', function () { setPaused(!userPaused); });
     });
-    $$('[data-carousel-prev]', carousel).forEach(function (b) {
+    $$('[data-carousel-prev]', scope).forEach(function (b) {
       b.addEventListener('click', function () { nudge -= cardStep(); });
     });
-    $$('[data-carousel-next]', carousel).forEach(function (b) {
+    $$('[data-carousel-next]', scope).forEach(function (b) {
       b.addEventListener('click', function () { nudge += cardStep(); });
     });
 
@@ -219,10 +222,10 @@
     if (reduced.matches) {
       /* No autoplay: arrows scroll the (now scrollable) track instead. */
       setPaused(true);
-      $$('[data-carousel-prev]', carousel).forEach(function (b) {
+      $$('[data-carousel-prev]', scope).forEach(function (b) {
         b.addEventListener('click', function () { carousel.scrollBy({ left: -cardStep(), behavior: 'smooth' }); });
       });
-      $$('[data-carousel-next]', carousel).forEach(function (b) {
+      $$('[data-carousel-next]', scope).forEach(function (b) {
         b.addEventListener('click', function () { carousel.scrollBy({ left: cardStep(), behavior: 'smooth' }); });
       });
     } else {
