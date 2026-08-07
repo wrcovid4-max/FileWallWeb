@@ -69,6 +69,21 @@ try { if (localStorage.getItem('filewall-theme') === 'light')
   </div>
 </div>
 
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Full-screen preview" hidden>
+  <div class="viewer-bar">
+    <p id="viewerTitle">Preview</p>
+    <span class="grow">
+      <button class="shot-btn" type="button" data-viewer-download aria-label="Download this screen as an image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="m7 11 5 5 5-5"/><path d="M5 20h14"/></svg></button>
+      <button class="shot-btn" type="button" data-viewer-close aria-label="Close full-screen preview">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12"/><path d="M18 6 6 18"/></svg>
+      </button>
+    </span>
+  </div>
+  <div class="viewer-stage" id="viewerStage"></div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
 <main id="main">
 <section class="page-hero">
     <div class="wrap">
@@ -207,7 +222,11 @@ try { if (localStorage.getItem('filewall-theme') === 'light')
   </section>
   <section style="padding-top:0">
     <div class="wrap">
-      <p class="fineprint"><strong>Small print.</strong> FileWall is free, with no in-app purchases and no subscription. Downloading it means accepting the <a href="terms.html">terms of service</a>; it is intended for users aged 16 or over. Only the Android build is downloadable — every other button on this page is a placeholder for a version still in development. The app is provided “as is”, without warranty, and has not been independently audited. You are responsible for keeping your own backups.</p>
+      <div class="fineprint"><ol>
+        <li><strong>Small print.</strong> FileWall is free, with no in-app purchases and no subscription. Downloading it means accepting the <a href="terms.html">terms of service</a>;</li>
+        <li>it is intended for users aged 16 or over. Only the Android build is downloadable — every other button on this page is a placeholder for a version still in development.</li>
+        <li>The app is provided “as is”, without warranty, and has not been independently audited. You are responsible for keeping your own backups.</li>
+      </ol></div>
     </div>
   </section>
 </main>
@@ -241,6 +260,7 @@ try { if (localStorage.getItem('filewall-theme') === 'light')
           <li><a href="news.html">News</a></li>
           <li><a href="support.html">Support</a></li>
           <li><a href="download.html">Download</a></li>
+          <li><a href="accessibility.html">Accessibility</a></li>
         </ul>
       </div>
 

@@ -137,43 +137,58 @@
   }
 
   /* ── Updates carousel ─────────────────────────────────────────────────
-     A CSS marquee, not a scroller: the track holds the cards twice and
-     translates by exactly -50%, so the loop is seamless with no pause at
-     the seam. JS only handles pausing and the flip interaction. */
+     A JS-driven marquee: the track holds the cards twice and is translated
+     every frame, so the motion is continuous with no pause at the seam.
+     Arrows nudge the same position the loop advances; hover/focus hold it. */
   $$('[data-marquee]').forEach(function (carousel) {
     var track = $('.marquee-track', carousel);
     if (!track) return;
 
-    /* Duplicate the set so the -50% translation lands on an identical frame.
+    /* Duplicate the set so wrapping at -50% lands on an identical frame.
        The copy is decorative: hidden from AT and skipped by the tab order. */
-    var originals = $$('.up-card', track);
-    originals.forEach(function (card) {
+    $$('.up-card', track).forEach(function (card) {
       var clone = card.cloneNode(true);
       clone.setAttribute('aria-hidden', 'true');
-      clone.setAttribute('tabindex', '-1');
       clone.dataset.clone = 'true';
+      $$('button, a, [tabindex]', clone).concat([clone]).forEach(function (el) {
+        el.setAttribute('tabindex', '-1');
+      });
       track.appendChild(clone);
     });
 
-    var paused = false;
+    var SPEED = 70;               /* px per second — a touch quicker */
+    var pos = 0, half = 0, nudge = 0, last = null;
+    var hovered = false, userPaused = reduced.matches, flipped = 0;
+
+    function measure() { half = track.scrollWidth / 2; }
+    function cardStep() {
+      var c = track.firstElementChild;
+      return c ? c.getBoundingClientRect().width + 18 : 260;
+    }
+    measure();
+    window.addEventListener('resize', measure, { passive: true });
+
     function setPaused(v) {
-      paused = v;
-      carousel.classList.toggle('is-paused', v);
-      $$('[data-carousel-pause]').forEach(function (b) {
+      userPaused = v;
+      $$('[data-carousel-pause]', carousel).forEach(function (b) {
         b.setAttribute('aria-pressed', v ? 'true' : 'false');
         b.setAttribute('aria-label', v ? 'Resume the updates carousel' : 'Pause the updates carousel');
       });
     }
-
-    $$('[data-carousel-pause]').forEach(function (b) {
-      b.addEventListener('click', function () { setPaused(!paused); });
+    $$('[data-carousel-pause]', carousel).forEach(function (b) {
+      b.addEventListener('click', function () { setPaused(!userPaused); });
+    });
+    $$('[data-carousel-prev]', carousel).forEach(function (b) {
+      b.addEventListener('click', function () { nudge -= cardStep(); });
+    });
+    $$('[data-carousel-next]', carousel).forEach(function (b) {
+      b.addEventListener('click', function () { nudge += cardStep(); });
     });
 
-    /* Hold still while someone is reading or interacting. */
-    carousel.addEventListener('mouseenter', function () { carousel.classList.add('is-paused'); });
-    carousel.addEventListener('mouseleave', function () { if (!paused) carousel.classList.remove('is-paused'); });
-    carousel.addEventListener('focusin',  function () { carousel.classList.add('is-paused'); });
-    carousel.addEventListener('focusout', function () { if (!paused) carousel.classList.remove('is-paused'); });
+    carousel.addEventListener('mouseenter', function () { hovered = true; });
+    carousel.addEventListener('mouseleave', function () { hovered = false; });
+    carousel.addEventListener('focusin',  function () { hovered = true; });
+    carousel.addEventListener('focusout', function () { hovered = false; });
 
     /* Flip a card to reveal the longer note on its back. */
     track.addEventListener('click', function (e) {
@@ -181,11 +196,38 @@
       if (!card) return;
       var open = card.getAttribute('aria-expanded') === 'true';
       card.setAttribute('aria-expanded', open ? 'false' : 'true');
-      if (!open) carousel.classList.add('is-paused');
-      else if (!paused) carousel.classList.remove('is-paused');
+      flipped += open ? -1 : 1;
     });
 
-    if (reduced.matches) setPaused(true);
+    function wrap(x) { return half ? ((x % half) + half) % half : x; }
+
+    function frame(t) {
+      if (last === null) last = t;
+      var dt = Math.min((t - last) / 1000, 0.05); last = t;
+      /* Hold when the user paused, is hovering, or has a card flipped open. */
+      if (!userPaused && !hovered && flipped === 0) pos += SPEED * dt;
+      if (nudge) {                       /* ease the arrow nudges in */
+        var d = nudge * Math.min(1, dt * 7);
+        if (Math.abs(nudge) < 0.5) { d = nudge; }
+        pos += d; nudge -= d;
+      }
+      pos = wrap(pos);
+      track.style.transform = 'translateX(' + (-pos) + 'px)';
+      requestAnimationFrame(frame);
+    }
+
+    if (reduced.matches) {
+      /* No autoplay: arrows scroll the (now scrollable) track instead. */
+      setPaused(true);
+      $$('[data-carousel-prev]', carousel).forEach(function (b) {
+        b.addEventListener('click', function () { carousel.scrollBy({ left: -cardStep(), behavior: 'smooth' }); });
+      });
+      $$('[data-carousel-next]', carousel).forEach(function (b) {
+        b.addEventListener('click', function () { carousel.scrollBy({ left: cardStep(), behavior: 'smooth' }); });
+      });
+    } else {
+      requestAnimationFrame(frame);
+    }
   });
 
   /* ── Filter chips + in-page search (support, news) ───────────────────── */
@@ -301,4 +343,176 @@
     }, { passive: true });
     syncHeader();
   }
+
+  /* ── Transient status toast ─────────────────────────────────────────── */
+  var toastEl = $('#toast'), toastTimer = null;
+  function toast(msg) {
+    if (!toastEl) return;
+    toastEl.textContent = msg;
+    toastEl.classList.add('is-on');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toastEl.classList.remove('is-on'); }, 2600);
+  }
+
+  /* ── Rasterise a drawn screen to a PNG canvas ───────────────────────────
+     The mockups are HTML+CSS, so they are cloned into an SVG <foreignObject>
+     with computed styles inlined, then painted to a canvas. Everything is
+     same-origin (no external assets), so the canvas stays untainted. */
+  function inlineStyles(src, dst) {
+    var cs = getComputedStyle(src), css = '';
+    for (var i = 0; i < cs.length; i++) {
+      var prop = cs[i];
+      css += prop + ':' + cs.getPropertyValue(prop) + ';';
+    }
+    dst.setAttribute('style', css);
+    var sc = src.children, dc = dst.children;
+    for (var j = 0; j < sc.length; j++) if (dc[j]) inlineStyles(sc[j], dc[j]);
+  }
+
+  function rasterise(node, scale) {
+    return new Promise(function (resolve, reject) {
+      var rect = node.getBoundingClientRect();
+      var w = Math.max(1, Math.ceil(rect.width)), h = Math.max(1, Math.ceil(rect.height));
+      var clone = node.cloneNode(true);
+      inlineStyles(node, clone);
+      var xml = new XMLSerializer().serializeToString(clone);
+      var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + w + '" height="' + h + '">' +
+                '<foreignObject width="100%" height="100%">' +
+                '<div xmlns="http://www.w3.org/1999/xhtml">' + xml + '</div>' +
+                '</foreignObject></svg>';
+      var img = new Image();
+      img.onload = function () {
+        var c = document.createElement('canvas');
+        c.width = w * scale; c.height = h * scale;
+        var g = c.getContext('2d');
+        g.setTransform(scale, 0, 0, scale, 0, 0);
+        g.drawImage(img, 0, 0);
+        resolve(c);
+      };
+      img.onerror = reject;
+      img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+    });
+  }
+
+  function slug(s) {
+    return (s || 'filewall').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'filewall';
+  }
+
+  function downloadCanvas(canvas, name) {
+    canvas.toBlob(function (blob) {
+      if (!blob) { toast('Could not export this screen'); return; }
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url; a.download = name + '.png';
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    }, 'image/png');
+  }
+
+  function downloadScreen(deviceNode, label, btn) {
+    if (!deviceNode) return;
+    if (btn) btn.disabled = true;
+    toast('Preparing image…');
+    rasterise(deviceNode, 2).then(function (c) {
+      downloadCanvas(c, slug(label));
+      toast('Image downloaded');
+    }).catch(function () {
+      toast('Could not export this screen');
+    }).then(function () { if (btn) btn.disabled = false; });
+  }
+
+  /* per-screen download buttons */
+  $$('[data-shot-download]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var shotEl = btn.closest('[data-shot]');
+      var dev = shotEl && (shotEl.querySelector('.phone') || shotEl.querySelector('.watch'));
+      downloadScreen(dev, shotEl && shotEl.dataset.shotLabel, btn);
+    });
+  });
+
+  /* ── Full-screen viewer ─────────────────────────────────────────────── */
+  var viewer = $('#viewer'), viewerStage = $('#viewerStage'), viewerTitle = $('#viewerTitle');
+  var viewerReturn = null, viewerSource = null;
+
+  function openViewer(deviceNode, label) {
+    if (!viewer || !deviceNode) return;
+    viewerReturn = document.activeElement;
+    viewerSource = deviceNode;
+    viewerStage.innerHTML = '';
+    viewerStage.appendChild(deviceNode.cloneNode(true));
+    viewerTitle.textContent = label || 'Preview';
+    viewer.hidden = false;
+    document.body.style.overflow = 'hidden';
+    var close = $('[data-viewer-close]', viewer);
+    if (close) close.focus();
+  }
+  function closeViewer() {
+    if (!viewer || viewer.hidden) return;
+    viewer.hidden = true;
+    viewerStage.innerHTML = '';
+    document.body.style.overflow = '';
+    if (viewerReturn && viewerReturn.focus) viewerReturn.focus();
+  }
+
+  $$('[data-shot-view]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var shotEl = btn.closest('[data-shot]');
+      var dev = shotEl && (shotEl.querySelector('.phone') || shotEl.querySelector('.watch'));
+      openViewer(dev, shotEl && shotEl.dataset.shotLabel);
+    });
+  });
+  if (viewer) {
+    $$('[data-viewer-close]', viewer).forEach(function (b) { b.addEventListener('click', closeViewer); });
+    viewer.addEventListener('click', function (e) { if (e.target === viewer) closeViewer(); });
+    $$('[data-viewer-download]', viewer).forEach(function (b) {
+      b.addEventListener('click', function () { downloadScreen(viewerSource, viewerTitle.textContent, b); });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !viewer.hidden) closeViewer();
+    });
+  }
+
+  /* ── News: download every image, copy all text ──────────────────────── */
+  $$('[data-news-download-all]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var arts = $$('.news-card:not([hidden]) .news-art');
+      if (!arts.length) { toast('No posts yet — nothing to download'); return; }
+      btn.disabled = true;
+      toast('Preparing ' + arts.length + ' image' + (arts.length > 1 ? 's' : '') + '…');
+      var i = 0;
+      (function next() {
+        if (i >= arts.length) { btn.disabled = false; toast('Downloaded ' + arts.length + ' images'); return; }
+        var card = arts[i].closest('.news-card');
+        var title = card && card.querySelector('h3');
+        rasterise(arts[i], 2).then(function (c) {
+          downloadCanvas(c, slug((title && title.textContent) || 'news') + '-' + (i + 1));
+        }).catch(function () {}).then(function () { i++; setTimeout(next, 250); });
+      })();
+    });
+  });
+
+  $$('[data-news-copy-all]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var cards = $$('.news-card:not([hidden])');
+      if (!cards.length) { toast('No posts yet — nothing to copy'); return; }
+      var text = cards.map(function (card) {
+        var h = card.querySelector('h3'), tag = card.querySelector('.news-tag');
+        var ps = $$('.inner p', card).filter(function (n) { return !n.classList.contains('news-meta'); });
+        var t = card.querySelector('time');
+        return [tag && tag.textContent.trim(), h && h.textContent.trim(),
+                ps.map(function (n) { return n.textContent.trim(); }).join('\n'),
+                t && t.textContent.trim()].filter(Boolean).join('\n');
+      }).join('\n\n———\n\n');
+      var done = function () { toast('Copied ' + cards.length + ' post' + (cards.length > 1 ? 's' : '')); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(function () { toast('Could not copy'); });
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = text; document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); done(); } catch (e) { toast('Could not copy'); }
+        ta.remove();
+      }
+    });
+  });
+
 })();

@@ -69,6 +69,21 @@ try { if (localStorage.getItem('filewall-theme') === 'light')
   </div>
 </div>
 
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Full-screen preview" hidden>
+  <div class="viewer-bar">
+    <p id="viewerTitle">Preview</p>
+    <span class="grow">
+      <button class="shot-btn" type="button" data-viewer-download aria-label="Download this screen as an image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="m7 11 5 5 5-5"/><path d="M5 20h14"/></svg></button>
+      <button class="shot-btn" type="button" data-viewer-close aria-label="Close full-screen preview">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12"/><path d="M18 6 6 18"/></svg>
+      </button>
+    </span>
+  </div>
+  <div class="viewer-stage" id="viewerStage"></div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
 <main id="main">
 <section class="page-hero">
     <div class="wrap">
@@ -82,7 +97,12 @@ try { if (localStorage.getItem('filewall-theme') === 'light')
     <div class="wrap">
       <div class="screens-grid">
         <figure class="screen-item reveal">
-          <div class="phone" role="img" aria-label="The vault screen: a storage line reading 269.4 megabytes used, a search field, an Unlocked and Hidden toggle set to Unlocked, colour-coded folders, and a grid of file thumbnails labelled IMAGE, VIDEO and DOC.">
+          <div class="shot" data-shot data-shot-label="The vault">
+      <div class="shot-actions">
+        <button class="shot-btn sm" type="button" data-shot-download aria-label="Download The vault as an image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="m7 11 5 5 5-5"/><path d="M5 20h14"/></svg></button>
+        <button class="shot-btn sm" type="button" data-shot-view aria-label="View The vault full screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4H4v5M20 9V4h-5M15 20h5v-5M4 15v5h5"/></svg></button>
+      </div>
+      <div class="phone" role="img" aria-label="The vault screen: a storage line reading 269.4 megabytes used, a search field, an Unlocked and Hidden toggle set to Unlocked, colour-coded folders, and a grid of file thumbnails labelled IMAGE, VIDEO and DOC.">
         <div class="phone-screen" aria-hidden="true"><div class="ph-status"><span>3:50</span><span class="ph-status-icons"><i></i><i></i><i></i><b></b></span></div>
           <div class="ph-body">
             <div class="ph-head"><p class="ph-title">FileWall</p><p class="ph-used">269.4 MB used</p></div>
@@ -112,10 +132,16 @@ try { if (localStorage.getItem('filewall-theme') === 'light')
           <div class="ph-fab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V6"/><path d="m6 12 6-6 6 6"/><path d="M5 20h14"/></svg></div>
           <div class="ph-nav"><span class="on"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="3.5" width="14" height="14" rx="2.5"/><path d="M17 20.5H5.5A2.5 2.5 0 0 1 3 18V7"/></svg></i>Open Vault</span><span class=""><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg></i>Hidden</span><span class=""><i><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M4.6 3.4H19.4V11.5C19.4 16.4 16.2 19.8 12 21.1C7.8 19.8 4.6 16.4 4.6 11.5ZM4.6 3.4H12V12.2H4.6Z"/><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" d="M4.6 3.4H19.4V11.5C19.4 16.4 16.2 19.8 12 21.1C7.8 19.8 4.6 16.4 4.6 11.5Z"/></svg></i>Security</span></div></div>
       </div>
+    </div>
           <figcaption><b>The vault</b><span>Folders, files, sort and live storage</span></figcaption>
         </figure>
         <figure class="screen-item reveal">
-          <div class="phone" role="img" aria-label="The hidden archive screen: the Hidden tab is selected and a passcode keypad is shown with four empty entry dots.">
+          <div class="shot" data-shot data-shot-label="The hidden archive">
+      <div class="shot-actions">
+        <button class="shot-btn sm" type="button" data-shot-download aria-label="Download The hidden archive as an image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="m7 11 5 5 5-5"/><path d="M5 20h14"/></svg></button>
+        <button class="shot-btn sm" type="button" data-shot-view aria-label="View The hidden archive full screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4H4v5M20 9V4h-5M15 20h5v-5M4 15v5h5"/></svg></button>
+      </div>
+      <div class="phone" role="img" aria-label="The hidden archive screen: the Hidden tab is selected and a passcode keypad is shown with four empty entry dots.">
         <div class="phone-screen" aria-hidden="true"><div class="ph-status"><span>3:50</span><span class="ph-status-icons"><i></i><i></i><i></i><b></b></span></div>
           <div class="ph-body">
             <div class="ph-head"><p class="ph-title">FileWall</p><p class="ph-used">269.4 MB used</p></div>
@@ -136,10 +162,16 @@ try { if (localStorage.getItem('filewall-theme') === 'light')
           </div>
           <div class="ph-nav"><span class=""><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="3.5" width="14" height="14" rx="2.5"/><path d="M17 20.5H5.5A2.5 2.5 0 0 1 3 18V7"/></svg></i>Open Vault</span><span class="on"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg></i>Hidden</span><span class=""><i><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M4.6 3.4H19.4V11.5C19.4 16.4 16.2 19.8 12 21.1C7.8 19.8 4.6 16.4 4.6 11.5ZM4.6 3.4H12V12.2H4.6Z"/><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" d="M4.6 3.4H19.4V11.5C19.4 16.4 16.2 19.8 12 21.1C7.8 19.8 4.6 16.4 4.6 11.5Z"/></svg></i>Security</span></div></div>
       </div>
+    </div>
           <figcaption><b>The hidden archive</b><span>A second vault behind a passcode</span></figcaption>
         </figure>
         <figure class="screen-item reveal">
-          <div class="phone" role="img" aria-label="The security screen: the FileWall shield, a storage breakdown showing Photos 236.3 megabytes, Videos 32.9 megabytes and Docs 131 kilobytes, and toggles for secure vault locking and biometric unlock.">
+          <div class="shot" data-shot data-shot-label="Security">
+      <div class="shot-actions">
+        <button class="shot-btn sm" type="button" data-shot-download aria-label="Download Security as an image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="m7 11 5 5 5-5"/><path d="M5 20h14"/></svg></button>
+        <button class="shot-btn sm" type="button" data-shot-view aria-label="View Security full screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4H4v5M20 9V4h-5M15 20h5v-5M4 15v5h5"/></svg></button>
+      </div>
+      <div class="phone" role="img" aria-label="The security screen: the FileWall shield, a storage breakdown showing Photos 236.3 megabytes, Videos 32.9 megabytes and Docs 131 kilobytes, and toggles for secure vault locking and biometric unlock.">
         <div class="phone-screen" aria-hidden="true"><div class="ph-status"><span>3:50</span><span class="ph-status-icons"><i></i><i></i><i></i><b></b></span></div>
           <div class="ph-body">
             <div class="ph-head"><p class="ph-title">FileWall</p><p class="ph-used">269.4 MB used</p></div>
@@ -172,10 +204,16 @@ try { if (localStorage.getItem('filewall-theme') === 'light')
           </div>
           <div class="ph-nav"><span class=""><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="3.5" width="14" height="14" rx="2.5"/><path d="M17 20.5H5.5A2.5 2.5 0 0 1 3 18V7"/></svg></i>Open Vault</span><span class=""><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg></i>Hidden</span><span class="on"><i><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M4.6 3.4H19.4V11.5C19.4 16.4 16.2 19.8 12 21.1C7.8 19.8 4.6 16.4 4.6 11.5ZM4.6 3.4H12V12.2H4.6Z"/><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" d="M4.6 3.4H19.4V11.5C19.4 16.4 16.2 19.8 12 21.1C7.8 19.8 4.6 16.4 4.6 11.5Z"/></svg></i>Security</span></div></div>
       </div>
+    </div>
           <figcaption><b>Security</b><span>Storage breakdown and unlock options</span></figcaption>
         </figure>
         <figure class="screen-item reveal">
-          <div class="phone" role="img" aria-label="The settings screen: a disable-passcode-fallback toggle, an Appearance selector set to System, and an inactivity auto-lock selector set to 15 seconds.">
+          <div class="shot" data-shot data-shot-label="Appearance & locking">
+      <div class="shot-actions">
+        <button class="shot-btn sm" type="button" data-shot-download aria-label="Download Appearance & locking as an image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="m7 11 5 5 5-5"/><path d="M5 20h14"/></svg></button>
+        <button class="shot-btn sm" type="button" data-shot-view aria-label="View Appearance & locking full screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4H4v5M20 9V4h-5M15 20h5v-5M4 15v5h5"/></svg></button>
+      </div>
+      <div class="phone" role="img" aria-label="The settings screen: a disable-passcode-fallback toggle, an Appearance selector set to System, and an inactivity auto-lock selector set to 15 seconds.">
         <div class="phone-screen" aria-hidden="true"><div class="ph-status"><span>3:50</span><span class="ph-status-icons"><i></i><i></i><i></i><b></b></span></div>
           <div class="ph-body">
             <div class="ph-head"><p class="ph-title">FileWall</p><p class="ph-used">269.4 MB used</p></div>
@@ -201,10 +239,16 @@ try { if (localStorage.getItem('filewall-theme') === 'light')
           </div>
           <div class="ph-nav"><span class=""><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="3.5" width="14" height="14" rx="2.5"/><path d="M17 20.5H5.5A2.5 2.5 0 0 1 3 18V7"/></svg></i>Open Vault</span><span class=""><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg></i>Hidden</span><span class="on"><i><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M4.6 3.4H19.4V11.5C19.4 16.4 16.2 19.8 12 21.1C7.8 19.8 4.6 16.4 4.6 11.5ZM4.6 3.4H12V12.2H4.6Z"/><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" d="M4.6 3.4H19.4V11.5C19.4 16.4 16.2 19.8 12 21.1C7.8 19.8 4.6 16.4 4.6 11.5Z"/></svg></i>Security</span></div></div>
       </div>
+    </div>
           <figcaption><b>Appearance & locking</b><span>Themes, and auto-lock from 15s to never</span></figcaption>
         </figure>
         <figure class="screen-item reveal">
-          <div class="phone" role="img" aria-label="The backup screen: a device-storage-sync toggle, an allow-screenshots toggle that is off, and a cloud backup and sync card with Backup and Restore buttons.">
+          <div class="shot" data-shot data-shot-label="Backup & privacy">
+      <div class="shot-actions">
+        <button class="shot-btn sm" type="button" data-shot-download aria-label="Download Backup & privacy as an image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="m7 11 5 5 5-5"/><path d="M5 20h14"/></svg></button>
+        <button class="shot-btn sm" type="button" data-shot-view aria-label="View Backup & privacy full screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4H4v5M20 9V4h-5M15 20h5v-5M4 15v5h5"/></svg></button>
+      </div>
+      <div class="phone" role="img" aria-label="The backup screen: a device-storage-sync toggle, an allow-screenshots toggle that is off, and a cloud backup and sync card with Backup and Restore buttons.">
         <div class="phone-screen" aria-hidden="true"><div class="ph-status"><span>3:50</span><span class="ph-status-icons"><i></i><i></i><i></i><b></b></span></div>
           <div class="ph-body">
             <div class="ph-head"><p class="ph-title">FileWall</p><p class="ph-used">269.4 MB used</p></div>
@@ -233,10 +277,16 @@ try { if (localStorage.getItem('filewall-theme') === 'light')
           </div>
           <div class="ph-nav"><span class=""><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="3.5" width="14" height="14" rx="2.5"/><path d="M17 20.5H5.5A2.5 2.5 0 0 1 3 18V7"/></svg></i>Open Vault</span><span class=""><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg></i>Hidden</span><span class="on"><i><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M4.6 3.4H19.4V11.5C19.4 16.4 16.2 19.8 12 21.1C7.8 19.8 4.6 16.4 4.6 11.5ZM4.6 3.4H12V12.2H4.6Z"/><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" d="M4.6 3.4H19.4V11.5C19.4 16.4 16.2 19.8 12 21.1C7.8 19.8 4.6 16.4 4.6 11.5Z"/></svg></i>Security</span></div></div>
       </div>
+    </div>
           <figcaption><b>Backup & privacy</b><span>Screenshot blocking and encrypted backup</span></figcaption>
         </figure>
         <figure class="screen-item reveal">
-          <div class="phone" role="img" aria-label="The viewer screen: an image open on a purple background with an Item Details sheet listing name, type, size and date, plus Export, Move, Rename and Delete actions.">
+          <div class="shot" data-shot data-shot-label="Viewer & details">
+      <div class="shot-actions">
+        <button class="shot-btn sm" type="button" data-shot-download aria-label="Download Viewer & details as an image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="m7 11 5 5 5-5"/><path d="M5 20h14"/></svg></button>
+        <button class="shot-btn sm" type="button" data-shot-view aria-label="View Viewer & details full screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4H4v5M20 9V4h-5M15 20h5v-5M4 15v5h5"/></svg></button>
+      </div>
+      <div class="phone" role="img" aria-label="The viewer screen: an image open on a purple background with an Item Details sheet listing name, type, size and date, plus Export, Move, Rename and Delete actions.">
         <div class="phone-screen" aria-hidden="true"><div class="ph-status"><span>3:50</span><span class="ph-status-icons"><i></i><i></i><i></i><b></b></span></div>
           <div class="ph-viewer">
             <div class="ph-viewer-bar">
@@ -256,6 +306,7 @@ try { if (localStorage.getItem('filewall-theme') === 'light')
             </div>
           </div></div>
       </div>
+    </div>
           <figcaption><b>Viewer & details</b><span>Open a file, or export it back out</span></figcaption>
         </figure>
       </div>
@@ -271,7 +322,12 @@ try { if (localStorage.getItem('filewall-theme') === 'light')
         <h2 id="wearscreen-h">The Wear OS companion</h2>
         <p class="lede">Unlocked files only. Hidden files are not in the data the watch receives, so a lost watch cannot even ask for them.</p>
       </div>
-      <div class="watch-stage reveal"><div class="watch" role="img" aria-label="A round smartwatch showing the FileWall companion: a list of unlocked files with colour-coded type markers, and an Open on phone button.">
+      <div class="watch-stage reveal"><div class="shot" data-shot data-shot-label="The Wear OS companion">
+      <div class="shot-actions">
+        <button class="shot-btn sm" type="button" data-shot-download aria-label="Download The Wear OS companion as an image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="m7 11 5 5 5-5"/><path d="M5 20h14"/></svg></button>
+        <button class="shot-btn sm" type="button" data-shot-view aria-label="View The Wear OS companion full screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4H4v5M20 9V4h-5M15 20h5v-5M4 15v5h5"/></svg></button>
+      </div>
+      <div class="watch" role="img" aria-label="A round smartwatch showing the FileWall companion: a list of unlocked files with colour-coded type markers, and an Open on phone button.">
         <span class="watch-crown" aria-hidden="true"></span>
         <div class="watch-face" aria-hidden="true">
           <div class="watch-head"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M4.6 3.4H19.4V11.5C19.4 16.4 16.2 19.8 12 21.1C7.8 19.8 4.6 16.4 4.6 11.5ZM4.6 3.4H12V12.2H4.6Z"/><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" d="M4.6 3.4H19.4V11.5C19.4 16.4 16.2 19.8 12 21.1C7.8 19.8 4.6 16.4 4.6 11.5Z"/></svg> FileWall</div>
@@ -283,13 +339,18 @@ try { if (localStorage.getItem('filewall-theme') === 'light')
           </div>
           <div class="watch-cta">Open on phone</div>
         </div>
-      </div></div>
+      </div>
+    </div></div>
       <p style="margin-top:48px;text-align:center"><a class="btn btn-ghost" href="index.html#wear">How the watch companion works</a></p>
     </div>
   </section>
   <section style="padding-top:0">
     <div class="wrap">
-      <p class="fineprint"><strong>Small print.</strong> These are illustrations, not screenshots — every screen is redrawn in CSS and SVG, so spacing, wording and iconography may differ from the app you install. File names, sizes, dates and the 269.4&nbsp;MB storage figure are sample data. Colours shown are from the dark theme; the app also follows your system setting and offers a light theme. Screens for platforms other than Android and Wear OS are not shown because those versions are still in development.</p>
+      <div class="fineprint"><ol>
+        <li><strong>Small print.</strong> These are illustrations, not screenshots — every screen is redrawn in CSS and SVG, so spacing, wording and iconography may differ from the app you install.</li>
+        <li>File names, sizes, dates and the 269.4&nbsp;MB storage figure are sample data. Colours shown are from the dark theme;</li>
+        <li>the app also follows your system setting and offers a light theme. Screens for platforms other than Android and Wear OS are not shown because those versions are still in development.</li>
+      </ol></div>
     </div>
   </section>
 </main>
@@ -323,6 +384,7 @@ try { if (localStorage.getItem('filewall-theme') === 'light')
           <li><a href="news.html">News</a></li>
           <li><a href="support.html">Support</a></li>
           <li><a href="download.html">Download</a></li>
+          <li><a href="accessibility.html">Accessibility</a></li>
         </ul>
       </div>
 
