@@ -1129,6 +1129,15 @@ html{scroll-behavior:smooth}
 .up-plus svg{width:16px;height:16px}
 .up-card:hover .up-plus{background:rgba(237,241,250,.3);transform:scale(1.12)}
 .up-card[aria-expanded="true"] .up-plus{transform:rotate(45deg)}
+.up-cross{
+  position:absolute;right:18px;bottom:18px;
+  width:34px;height:34px;border-radius:50%;
+  display:grid;place-items:center;
+  background:rgba(237,241,250,.16);color:#EDF1FA;
+  transition:transform .3s ease,background-color .25s ease;
+}
+.up-cross svg{width:16px;height:16px}
+.up-card:hover .up-cross{background:rgba(237,241,250,.3);transform:rotate(90deg) scale(1.12)}
 .up-card:focus-visible{outline:2px solid var(--primary-ink);outline-offset:4px;border-radius:var(--r-card)}
 @media (prefers-reduced-motion:reduce){
   .up-inner{transition:none}
