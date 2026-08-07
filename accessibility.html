@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Accessibility — FileWall</title>
+<meta name="description" content="How the FileWall website supports screen readers like VoiceOver and TalkBack, full keyboard use, reduced motion, AA contrast, dark and light themes, zoom, and downloadable content.">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0E1626">
+<link rel="icon" href="assets/filewall-icon-96.png">
+<link rel="apple-touch-icon" href="assets/filewall-icon.png">
+<link rel="stylesheet" href="assets/filewall.css">
+<script>
+/* Applied before first paint so a stored light theme never flashes dark. */
+document.documentElement.classList.add('js');
+try { if (localStorage.getItem('filewall-theme') === 'light')
+        document.documentElement.setAttribute('data-theme', 'light'); } catch (e) {}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header" id="siteHeader">
+  <div class="wrap nav">
+    <a class="brand" href="index.html"><img src="assets/filewall-icon-96.png" width="32" height="32" alt="" decoding="async"> FileWall</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html#features">Features</a>
+      <a href="screens.html">Screens</a>
+      <a href="platforms.html">Platforms</a>
+      <a href="index.html#encryption">Security</a>
+      <a href="news.html">News</a>
+      <a href="support.html">Support</a>
+      <a href="download.html">Download</a>
+    </nav>
+    <div class="nav-tools">
+      <button class="icon-btn" type="button" data-search-open aria-label="Search this site"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg></button>
+      <button class="icon-btn" type="button" data-theme-toggle aria-label="Switch to light theme"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2"/><path d="M12 19.3v2.2"/><path d="M4.2 4.2l1.6 1.6"/><path d="M18.2 18.2l1.6 1.6"/><path d="M2.5 12h2.2"/><path d="M19.3 12h2.2"/><path d="M4.2 19.8l1.6-1.6"/><path d="M18.2 5.8l1.6-1.6"/></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13.5A8.2 8.2 0 0 1 10.5 4a8.2 8.2 0 1 0 9.5 9.5Z"/></svg></button>
+      <button class="icon-btn nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="navDrawer" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg></button>
+    </div>
+    <a class="btn btn-primary btn-sm" data-link="download" href="download.html">Get FileWall</a>
+  </div>
+  <div class="nav-drawer" id="navDrawer">
+    <nav aria-label="Mobile">
+      <ul>
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="screens.html">Screens</a></li>
+        <li><a href="platforms.html">Platforms</a></li>
+        <li><a href="index.html#encryption">Security</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="support.html">Support</a></li>
+        <li><a href="download.html">Download</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-primary" data-link="download" href="download.html">Get FileWall</a>
+  </div>
+</header>
+
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search FileWall" hidden>
+  <div class="search-panel">
+    <div class="search-field">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
+      <input id="searchInput" type="search" placeholder="Search FileWall…" autocomplete="off" aria-label="Search FileWall" aria-describedby="searchEmpty">
+      <button class="icon-btn" type="button" data-search-close aria-label="Close search" style="width:32px;height:32px;border:0">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12"/><path d="M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <ul class="search-results" id="searchResults"></ul>
+    <p class="search-empty" id="searchEmpty" hidden>Nothing matches that. Try “backup”, “keys” or “watch”.</p>
+  </div>
+</div>
+
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Full-screen preview" hidden>
+  <div class="viewer-bar">
+    <p id="viewerTitle">Preview</p>
+    <span class="grow">
+      <button class="shot-btn" type="button" data-viewer-download aria-label="Download this screen as an image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="m7 11 5 5 5-5"/><path d="M5 20h14"/></svg></button>
+      <button class="shot-btn" type="button" data-viewer-close aria-label="Close full-screen preview">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12"/><path d="M18 6 6 18"/></svg>
+      </button>
+    </span>
+  </div>
+  <div class="viewer-stage" id="viewerStage"></div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<main id="main">
+<section class="page-hero">
+    <div class="wrap">
+      <div><p class="pill-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9Z"/><path d="M17 8.5a5 5 0 0 1 0 7"/><path d="M19.5 6a8.5 8.5 0 0 1 0 12"/></svg> Built to be used by everyone</p></div>
+      <div><a class="back-link" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg> Back to overview</a></div>
+      <h1>Accessibility, in plain terms.</h1>
+      <p class="lede">This page lists exactly how this website behaves with a screen reader, a keyboard, a magnifier or reduced motion — no vague promises, just what is actually wired up. Every item is &ldquo;Live&rdquo; because it ships in the page you are reading right now.</p>
+    </div>
+  </section>
+  <section style="padding-top:0" aria-labelledby="a11y-h">
+    <div class="wrap">
+      <div class="section-head reveal" style="max-width:none">
+        <p class="eyebrow">The exhaustive list</p>
+        <h2 id="a11y-h">Every accessibility feature on this site.</h2>
+        <p class="lede">Grouped by what you might be using to read it. If something here doesn't hold up for you, that is a bug — please tell us.</p>
+      </div>
+      <div class="a11y-grid">
+        <article class="card a11y-card reveal">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9Z"/><path d="M17 8.5a5 5 0 0 1 0 7"/><path d="M19.5 6a8.5 8.5 0 0 1 0 12"/></svg> <span>Screen readers &amp; VoiceOver</span> <span class="a11y-status on">Live</span></h3>
+          <ul>
+            <li><strong>VoiceOver</strong> (iOS/macOS), <strong>TalkBack</strong> (Android), <strong>NVDA</strong> and <strong>JAWS</strong> (Windows), <strong>Narrator</strong> and <strong>Orca</strong> (Linux) all read this site through the same standard semantics — nothing here is built for one reader only.</li>
+            <li>Every control is a real <code>&lt;button&gt;</code> or <code>&lt;a&gt;</code>, so it is announced with its role and state and lands in the reader's element list.</li>
+            <li>Icons that carry no meaning are marked <code>aria-hidden</code>; icons that do carry meaning have a text label, so a reader never announces &ldquo;graphic&rdquo; with nothing after it.</li>
+            <li>Live regions announce toasts and search results politely, without stealing focus.</li>
+          </ul>
+        </article>
+        <article class="card a11y-card reveal">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="19" height="12" rx="2.5"/><path d="M6 9.5h.01M9 9.5h.01M12 9.5h.01M15 9.5h.01M18 9.5h.01M7 14h10"/></svg> <span>Full keyboard operation</span> <span class="a11y-status on">Live</span></h3>
+          <ul>
+            <li>Everything is reachable and operable with <strong>Tab</strong>, <strong>Shift+Tab</strong>, <strong>Enter</strong>, <strong>Space</strong> and the arrow keys — there is no action that needs a mouse.</li>
+            <li>A <strong>Skip to content</strong> link is the first thing you reach, so you can jump the navigation on every page.</li>
+            <li>The carousel arrows, flip cards, menus and dialogs all take focus in a logical order and never trap it.</li>
+            <li><strong>Escape</strong> closes the search overlay, the full-screen viewer and the mobile menu.</li>
+          </ul>
+        </article>
+        <article class="card a11y-card reveal">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16"/><circle cx="12" cy="12" r="2.5"/></svg> <span>Visible focus, always</span> <span class="a11y-status on">Live</span></h3>
+          <ul>
+            <li>A clear, high-contrast focus ring follows the keyboard on every interactive element — it is never removed, only styled.</li>
+            <li>Focus rings show for keyboard users and stay out of the way for mouse users, via <code>:focus-visible</code>.</li>
+            <li>When a dialog opens, focus moves into it; when it closes, focus returns to the control that opened it.</li>
+            <li>Focus is never sent to something hidden — collapsed panels are marked <code>inert</code> so they can't be tabbed into.</li>
+          </ul>
+        </article>
+        <article class="card a11y-card reveal">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="M12 8v6"/><path d="m8 21 4-7 4 7"/><path d="M6 11h12"/></svg> <span>Respects reduced motion</span> <span class="a11y-status on">Live</span></h3>
+          <ul>
+            <li>Turn on <strong>Reduce Motion</strong> in your system settings and the auto-scrolling carousel stops moving on its own and becomes a plain, swipeable row.</li>
+            <li>Reveal-on-scroll animations, card flips and hover lifts all shorten to nothing — content simply appears.</li>
+            <li>The carousel can also be paused by hand with the pause button, and pauses itself on hover or focus.</li>
+            <li>No animation flashes, and nothing moves faster than three times a second.</li>
+          </ul>
+        </article>
+        <article class="card a11y-card reveal">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18Z" fill="currentColor"/></svg> <span>Colour &amp; contrast</span> <span class="a11y-status on">Live</span></h3>
+          <ul>
+            <li>Body text and interface controls meet or beat the <strong>WCAG AA</strong> contrast ratio in both the dark and light themes.</li>
+            <li>Colour is never the only signal — states also carry an icon, a label or a shape.</li>
+            <li>The design leans on tokens with a separate text-ink colour, so buttons stay legible when the theme flips.</li>
+            <li>Nothing depends on distinguishing red from green.</li>
+          </ul>
+        </article>
+        <article class="card a11y-card reveal">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18Z" fill="currentColor"/></svg> <span>Dark, light &amp; system themes</span> <span class="a11y-status on">Live</span></h3>
+          <ul>
+            <li>The site opens in whichever theme your device prefers, and remembers your choice after that.</li>
+            <li>A theme toggle in the header switches dark and light instantly, applied before the page paints so there is no flash.</li>
+            <li>Both themes are first-class and both are contrast-checked — the light theme is not an afterthought.</li>
+            <li>Device mockups stay dark in either theme on purpose, so they read as a phone screen, not a page element.</li>
+          </ul>
+        </article>
+        <article class="card a11y-card reveal">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8.5v5M8.5 11h5"/></svg> <span>Text size &amp; zoom</span> <span class="a11y-status on">Live</span></h3>
+          <ul>
+            <li>Zoom the browser to <strong>200%</strong> and beyond — the layout reflows into a single column instead of scrolling sideways.</li>
+            <li>Text is sized in relative units, so it grows with your browser's font-size setting.</li>
+            <li>Wide things — tables, code, diagrams — scroll inside their own box, so the page itself never scrolls horizontally.</li>
+            <li>There is no fixed, viewport-locked text that would clip when enlarged.</li>
+          </ul>
+        </article>
+        <article class="card a11y-card reveal">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3l5 16 2.5-6.5L19 10Z"/></svg> <span>Comfortable pointer targets</span> <span class="a11y-status on">Live</span></h3>
+          <ul>
+            <li>Buttons and links are sized to a comfortable touch target with room around them, so they are easy to hit.</li>
+            <li>Tapping works the same as clicking — nothing depends on hover to be usable.</li>
+            <li>Nothing needs a precise drag, a long-press or a multi-finger gesture.</li>
+            <li>Hover and focus reveal the same information, so touch users are never shown less.</li>
+          </ul>
+        </article>
+        <article class="card a11y-card reveal">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16M4 10h10M4 15h16M4 20h10"/></svg> <span>Semantic, predictable structure</span> <span class="a11y-status on">Live</span></h3>
+          <ul>
+            <li>One <code>&lt;h1&gt;</code> per page and headings that step down in order, so a reader's heading list is a real outline.</li>
+            <li>Landmarks — <code>banner</code>, <code>nav</code>, <code>main</code>, <code>contentinfo</code> — let you jump straight to a region.</li>
+            <li>The current page is marked <code>aria-current</code> in the navigation.</li>
+            <li>Every page declares its language, and the reading order matches the visual order.</li>
+          </ul>
+        </article>
+        <article class="card a11y-card reveal">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="m7 11 5 5 5-5"/><path d="M5 20h14"/></svg> <span>Save any screen as an image</span> <span class="a11y-status on">Live</span></h3>
+          <ul>
+            <li>Every device mockup carries a small <strong>download</strong> button, and a full-screen <strong>view</strong> button, in its corner.</li>
+            <li>The full-screen viewer has its own download button and closes with Escape or the close control.</li>
+            <li>Images are rendered on your own machine from the page itself — nothing is fetched from a server to do it.</li>
+            <li>Both buttons have text labels for screen readers even though they show only an icon.</li>
+          </ul>
+        </article>
+        <article class="card a11y-card reveal">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg> <span>Take the words with you</span> <span class="a11y-status on">Live</span></h3>
+          <ul>
+            <li>The news archive has <strong>Download all images</strong> and <strong>Copy all text</strong> buttons that act on every visible post at once.</li>
+            <li>Copied text keeps its headings, tags and dates as plain text you can paste anywhere.</li>
+            <li>All body text is real, selectable text — none of it is baked into an image.</li>
+            <li>A short status message confirms what happened after each action.</li>
+          </ul>
+        </article>
+        <article class="card a11y-card reveal">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4H4v5M20 9V4h-5M15 20h5v-5M4 15v5h5"/></svg> <span>Nothing hidden from assistive tech</span> <span class="a11y-status on">Live</span></h3>
+          <ul>
+            <li>Expandable cards and FAQ rows report their open or closed state with <code>aria-expanded</code>.</li>
+            <li>Collapsed content is genuinely removed from the tab order and the accessibility tree until it opens.</li>
+            <li>No content is available only on hover, and none of it disappears before you can read it.</li>
+            <li>The site works with JavaScript doing less — the core reading experience does not depend on it.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section aria-labelledby="a11y-reach-h">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Found a barrier?</p>
+        <h2 id="a11y-reach-h">Tell us what got in your way.</h2>
+        <p class="lede">Accessibility is never finished. If a control, a colour or a screen reader announcement let you down, open an issue and we will treat it as a real defect.</p>
+      </div>
+      <div class="support-cards" style="margin-top:0">
+        <article class="card support-card reveal">
+          <span class="pick-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="7" width="8" height="13" rx="4"/><path d="M4 11h4"/><path d="M16 11h4"/><path d="M4.5 17h3.5"/><path d="M16 17h3.5"/><path d="M9 6 7.5 3.5"/><path d="m15 6 1.5-2.5"/></svg></span>
+          <h3>Report an accessibility issue</h3>
+          <p>Tell us the page, what you were using — VoiceOver, a keyboard, 200% zoom — and what happened.</p>
+          <a data-link="issues" href="https://github.com/wrcovid4-max/FileWallWeb/issues">Open an issue &rarr;</a>
+        </article>
+        <article class="card support-card reveal">
+          <span class="pick-ico"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.69-.22.69-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85l-.01 2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg></span>
+          <h3>Check it against the source</h3>
+          <p>Every claim on this page is visible in the markup. The site is open, so you can verify it, not just take our word.</p>
+          <a data-link="source" href="https://github.com/wrcovid4-max/FileWallWeb">Read the source &rarr;</a>
+        </article>
+      </div>
+    </div>
+  </section>
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="fineprint"><ol>
+        <li><strong>Small print.</strong> This page describes the accessibility of this website, not of the FileWall Android app, which has its own accessibility support through the system.</li>
+        <li>&ldquo;Live&rdquo; means the behaviour ships in the current site; it is a description of what we have built, not a formal conformance claim.</li>
+        <li>This site has not been through an independent accessibility audit or certified against WCAG — we aim at WCAG&nbsp;2.1 AA and treat any gap as a bug.</li>
+        <li>Screen-reader behaviour can still vary by browser and reader version. If something here doesn't match what you experience, please <a href="support.html">tell us</a>.</li>
+      </ol></div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-about">
+        <a class="brand" href="index.html"><img src="assets/filewall-icon-96.png" width="32" height="32" alt="" decoding="async"> FileWall</a>
+        <p>Your own private cloud, on your own phone. Encrypted on the device, with no account and no server behind it.</p>
+      </div>
+
+      <div class="footer-col">
+        <h2>Platforms</h2>
+        <ul>
+          <li><a href="platforms.html">Android</a></li>
+          <li><a href="platforms.html">Wear OS</a></li>
+          <li><a href="platforms.html">iOS &amp; watchOS</a></li>
+          <li><a href="platforms.html">Vision &amp; XR</a></li>
+          <li><a href="platforms.html">In the car</a></li>
+          <li><a href="platforms.html">Web app</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h2>Explore</h2>
+        <ul>
+          <li><a href="index.html#features">Features</a></li>
+          <li><a href="screens.html">Screens</a></li>
+          <li><a href="index.html#encryption">Security</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="support.html">Support</a></li>
+          <li><a href="download.html">Download</a></li>
+          <li><a href="accessibility.html">Accessibility</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h2>Contact</h2>
+        <ul>
+          <li><a class="with-ico" data-link="source" href="https://github.com/wrcovid4-max/FileWallWeb"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.69-.22.69-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85l-.01 2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg> Source on GitHub</a></li>
+          <li><a class="with-ico" data-link="issues" href="https://github.com/wrcovid4-max/FileWallWeb/issues"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="7" width="8" height="13" rx="4"/><path d="M4 11h4"/><path d="M16 11h4"/><path d="M4.5 17h3.5"/><path d="M16 17h3.5"/><path d="M9 6 7.5 3.5"/><path d="m15 6 1.5-2.5"/></svg> Report an issue</a></li>
+          <li><a class="with-ico" data-link="support" href="support.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 12.5a7.5 7.5 0 0 1-10.9 6.7L4 20.5l1.3-5.4A7.5 7.5 0 1 1 20.5 12.5Z"/></svg> Support &amp; FAQs</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h2>Legal</h2>
+        <ul>
+          <li><a href="privacy.html">Privacy policy</a></li>
+          <li><a href="terms.html">Terms of service</a></li>
+          <li><a href="trademarks.html">Trademarks</a></li>
+          <li><a data-link="licence" href="https://github.com/wrcovid4-max/FileWallWeb/blob/main/LICENSE">Licence</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 WR COVID TM</p>
+      <p>Built for people who hand their phone to other people.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/filewall.js"></script>
+</body>
+</html>

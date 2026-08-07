@@ -69,6 +69,21 @@ try { if (localStorage.getItem('filewall-theme') === 'light')
   </div>
 </div>
 
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Full-screen preview" hidden>
+  <div class="viewer-bar">
+    <p id="viewerTitle">Preview</p>
+    <span class="grow">
+      <button class="shot-btn" type="button" data-viewer-download aria-label="Download this screen as an image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="m7 11 5 5 5-5"/><path d="M5 20h14"/></svg></button>
+      <button class="shot-btn" type="button" data-viewer-close aria-label="Close full-screen preview">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12"/><path d="M18 6 6 18"/></svg>
+      </button>
+    </span>
+  </div>
+  <div class="viewer-stage" id="viewerStage"></div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
 <main id="main">
 <section class="page-hero">
     <div class="wrap">
@@ -248,7 +263,12 @@ try { if (localStorage.getItem('filewall-theme') === 'light')
   </section>
   <section style="padding-top:0">
     <div class="wrap">
-      <p class="fineprint"><strong>Small print.</strong> Only Android and Wear OS are downloadable today; every platform marked <em>Coming soon</em> is in development and has no announced release date, so please don't plan around one. Feature parity across platforms is an intention, not a commitment — each one is built against its own secure hardware. Apple, iPhone, iPad, Apple Watch, watchOS, Apple Vision Pro, visionOS and CarPlay are trademarks of Apple Inc.; Android, Wear OS, Android Auto and Android XR are trademarks of Google LLC. See <a href="trademarks.html">trademarks</a>.</p>
+      <div class="fineprint"><ol>
+        <li><strong>Small print.</strong> Only Android and Wear OS are downloadable today; every platform marked <em>Coming soon</em> is in development and has no announced release date,</li>
+        <li>so please don't plan around one. Feature parity across platforms is an intention, not a commitment — each one is built against its own secure hardware.</li>
+        <li>Apple, iPhone, iPad, Apple Watch, watchOS, Apple Vision Pro, visionOS and CarPlay are trademarks of Apple Inc.;</li>
+        <li>Android, Wear OS, Android Auto and Android XR are trademarks of Google LLC. See <a href="trademarks.html">trademarks</a>.</li>
+      </ol></div>
     </div>
   </section>
 </main>
@@ -282,6 +302,7 @@ try { if (localStorage.getItem('filewall-theme') === 'light')
           <li><a href="news.html">News</a></li>
           <li><a href="support.html">Support</a></li>
           <li><a href="download.html">Download</a></li>
+          <li><a href="accessibility.html">Accessibility</a></li>
         </ul>
       </div>
 
