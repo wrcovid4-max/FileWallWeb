@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FileWall on iPhone — iOS</title>
-<meta name="description" content="FileWall on iPhone: an encrypted file vault that unlocks with Face ID, Touch ID or a passcode, with a hidden vault, screenshot blocking and encrypted backup. No account, no server.">
+<title>FileWall Arrives on iOS, iPadOS and Apple Watch in Early Beta — FileWall</title>
+<meta name="description" content="FileWall, the private on-device vault, is now in early beta on iPhone, iPad and Apple Watch. Encrypted on the device, with a hidden vault, and no account.">
 <meta name="color-scheme" content="dark light">
 <meta name="theme-color" content="#0E1626">
 <link rel="icon" href="assets/filewall-icon-96.png">
@@ -26,9 +26,9 @@ try { if (localStorage.getItem('filewall-theme') === 'light')
     <nav class="nav-links" aria-label="Primary">
       <a href="index.html#features">Features</a>
       <a href="screens.html">Screens</a>
-      <a href="platforms.html" aria-current="page">Platforms</a>
+      <a href="platforms.html">Platforms</a>
       <a href="index.html#encryption">Security</a>
-      <a href="news.html">News</a>
+      <a href="news.html" aria-current="page">News</a>
       <a href="support.html">Support</a>
       <a href="download.html">Download</a>
     </nav>
@@ -44,9 +44,9 @@ try { if (localStorage.getItem('filewall-theme') === 'light')
       <ul>
         <li><a href="index.html#features">Features</a></li>
         <li><a href="screens.html">Screens</a></li>
-        <li><a href="platforms.html" aria-current="page">Platforms</a></li>
+        <li><a href="platforms.html">Platforms</a></li>
         <li><a href="index.html#encryption">Security</a></li>
-        <li><a href="news.html">News</a></li>
+        <li><a href="news.html" aria-current="page">News</a></li>
         <li><a href="support.html">Support</a></li>
         <li><a href="download.html">Download</a></li>
       </ul>
@@ -85,92 +85,70 @@ try { if (localStorage.getItem('filewall-theme') === 'light')
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <main id="main">
-<section class="page-hero">
+  <section class="page-hero">
     <div class="wrap">
-      <div><p class="pill-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M10.5 18.5h3"/></svg> iPhone · iOS · Early beta</p></div>
-      <div><a class="back-link" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg> Back to overview</a></div>
-      <h1>FileWall on iPhone.</h1>
-      <p class="lede">The same private vault, keyed to the Secure Enclave. Files are encrypted on the device and unlocked with Face ID, Touch ID or your passcode — with a hidden vault behind a second passcode.</p>
+      <div><a class="back-link" href="news.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg> Back to news</a></div>
+      <div><p class="pill-badge"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1.5 14.1 8 20.5 12 14.1 16 12 22.5 9.9 16 3.5 12 9.9 8Z"/></svg> Announcement</p></div>
+      <h1>FileWall Arrives on iOS, iPadOS and Apple Watch in Early Beta</h1>
+      <p class="lede">The private, on-device vault comes to Apple devices — encrypted on the phone, and now in your pocket, on your desk and on your wrist.</p>
+      <p class="news-meta" style="justify-content:center;margin-top:18px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><time datetime="2026-08-16">Aug 16, 2026</time></p>
     </div>
   </section>
   <section style="padding-top:0">
-    <div class="wrap">
-      <div class="shot-hero split">
-        <a class="shot-frame reveal" href="assets/screens/ios/02-grid.jpg" target="_blank" rel="noopener" aria-label="Open full-size screenshot: FileWall on iPhone showing the vault as a grid of photo thumbnails."><img src="assets/screens/ios/02-grid.jpg" width="383" height="778" decoding="async" alt="FileWall on iPhone showing the vault as a grid of photo thumbnails."></a>
-        <div class="shot-lead reveal">
-          <h2>The same vault, on iPhone.</h2>
-          <p>FileWall keeps your files encrypted on the device and unlocks with the hardware you already trust. No account, no server, nothing to sign up for.</p>
-          <ul>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg> <b>Unlocks with your face.</b> Face ID, Touch ID or your passcode open the vault; the keys are kept in the Secure Enclave.</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg> <b>A hidden vault inside the vault.</b> A second space behind its own passcode, locked by default.</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg> <b>Nothing leaves without you.</b> Screenshots are off by default; export a single file, or an encrypted .fwvault archive, when you choose.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section style="padding-top:0">
-    <div class="wrap">
-      <div class="shots">
-        <figure class="shot-fig reveal">
-          <a class="shot-frame" href="assets/screens/ios/01-vault.jpg" target="_blank" rel="noopener" aria-label="Open full-size screenshot: The vault">
-            <img src="assets/screens/ios/01-vault.jpg" width="383" height="778" loading="lazy" decoding="async" alt="The FileWall vault on iPhone with a search field and the Vault, Hidden and Security tabs.">
-          </a>
-          <figcaption><b>The vault</b><span>Everything in one place, searchable by name.</span></figcaption>
-        </figure>
-        <figure class="shot-fig reveal">
-          <a class="shot-frame" href="assets/screens/ios/08-filter.jpg" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Filter by type">
-            <img src="assets/screens/ios/08-filter.jpg" width="383" height="778" loading="lazy" decoding="async" alt="A filter menu listing All Types, Photo, Video, Document and Other, with Compact, Comfortable and Large density options.">
-          </a>
-          <figcaption><b>Filter by type</b><span>Photos, videos, documents — and how tightly they pack.</span></figcaption>
-        </figure>
-        <figure class="shot-fig reveal">
-          <a class="shot-frame" href="assets/screens/ios/03-actions.jpg" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Per-file actions">
-            <img src="assets/screens/ios/03-actions.jpg" width="383" height="778" loading="lazy" decoding="async" alt="A file context menu with Rename, Move to Folder, Share, Archive and Delete.">
-          </a>
-          <figcaption><b>Per-file actions</b><span>Rename, move, share, archive or delete.</span></figcaption>
-        </figure>
-        <figure class="shot-fig reveal">
-          <a class="shot-frame" href="assets/screens/ios/04-hidden.jpg" target="_blank" rel="noopener" aria-label="Open full-size screenshot: The hidden vault">
-            <img src="assets/screens/ios/04-hidden.jpg" width="383" height="778" loading="lazy" decoding="async" alt="The Hidden Vault screen, locked, with an Unlock button.">
-          </a>
-          <figcaption><b>The hidden vault</b><span>Locked behind Face ID, Touch ID or a passcode.</span></figcaption>
-        </figure>
-        <figure class="shot-fig reveal">
-          <a class="shot-frame" href="assets/screens/ios/05-security.jpg" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Security & storage">
-            <img src="assets/screens/ios/05-security.jpg" width="383" height="778" loading="lazy" decoding="async" alt="The Security screen showing an Appearance selector, a storage total and a lock-after timer.">
-          </a>
-          <figcaption><b>Security & storage</b><span>Appearance, storage and auto-lock in one place.</span></figcaption>
-        </figure>
-        <figure class="shot-fig reveal">
-          <a class="shot-frame" href="assets/screens/ios/06-privacy.jpg" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Privacy & backup">
-            <img src="assets/screens/ios/06-privacy.jpg" width="383" height="778" loading="lazy" decoding="async" alt="Privacy toggles for Allow Screenshots, Sync to Apple Watch and Document Previews, plus Export and Restore .fwvault and Sign in with Google.">
-          </a>
-          <figcaption><b>Privacy & backup</b><span>Screenshot blocking, and an encrypted .fwvault archive.</span></figcaption>
-        </figure>
-        <figure class="shot-fig reveal">
-          <a class="shot-frame" href="assets/screens/ios/07-archive.jpg" target="_blank" rel="noopener" aria-label="Open full-size screenshot: The archive">
-            <img src="assets/screens/ios/07-archive.jpg" width="383" height="778" loading="lazy" decoding="async" alt="The Archive list showing an archived photo with its size.">
-          </a>
-          <figcaption><b>The archive</b><span>Set files aside without deleting them.</span></figcaption>
-        </figure>
-        <figure class="shot-fig reveal">
-          <a class="shot-frame" href="assets/screens/ios/00-home.jpg" target="_blank" rel="noopener" aria-label="Open full-size screenshot: On your Home Screen">
-            <img src="assets/screens/ios/00-home.jpg" width="383" height="778" loading="lazy" decoding="async" alt="An iPhone Home Screen with the FileWall app icon.">
-          </a>
-          <figcaption><b>On your Home Screen</b><span>One tap from the Home Screen to the vault.</span></figcaption>
-        </figure>
+    <div class="wrap article">
+      <div class="article-body">
+        <p class="stand">Today we're bringing FileWall — the private, on-device vault — to Apple devices. FileWall is now in early beta on iPhone, iPad and Apple Watch, the first step toward a vault that follows you across the Apple ecosystem.</p>
+
+        <p>Your files tend to scatter: photos here, documents there, downloads and archives somewhere else again. FileWall is built around a straightforward idea — your files should be easy to find and easy to organise, and they should stay private while you do it. Everything you add is encrypted on the device and lives in a vault only you can open. There is no account, and there is no server behind it.</p>
+
+        <h2>Built for your Apple devices</h2>
+        <p>FileWall is designed from the ground up for Apple's hardware, so each version unlocks with the security your device already has and makes the most of its screen.</p>
+
+        <p class="dev-sub"><span aria-hidden="true">&#128241;</span><b>iPhone</b></p>
+        <p>On iPhone, FileWall gives your files a dedicated, private home. Browse documents, organise folders and open what you saved earlier — all behind Face ID, Touch ID or your passcode, with a hidden vault tucked behind a second passcode for the things that need it most.</p>
+
+        <p class="dev-sub"><span aria-hidden="true">&#128421;</span><b>iPad</b></p>
+        <p>File management gets more room on iPad. A permanent sidebar and a side-by-side view make working with larger collections comfortable, and Markup lets you annotate a photo or document without it ever leaving the vault. It's a file manager that feels at home on a bigger screen, not a stretched phone app.</p>
+
+        <p class="dev-sub"><span aria-hidden="true">&#8986;</span><b>Apple Watch</b></p>
+        <p>FileWall is making its way to Apple Watch too. The watch is built around quick access rather than the whole file manager: a glance at your unlocked files, right from your wrist. Hidden files are never sent to the watch, so a lost watch can't even ask for them.</p>
+
+        <h2>Designed around simplicity</h2>
+        <p>File management doesn't need to feel complicated. FileWall keeps the experience organised and understandable, and focuses on the things people actually need:</p>
+        <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg> Browse your files, encrypted on the device</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg> Organise folders and content</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg> Find files more easily</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg> Manage photos, videos, documents and more</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg> Keep a second, hidden vault behind its own passcode</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg> Access your files across supported Apple devices</li>
+      </ul>
+        <p>The aim is simple: open FileWall and immediately understand where everything is — while knowing it's all encrypted underneath.</p>
+
+        <h2>Early beta: the beginning, not the finish line</h2>
+        <p>FileWall is in early beta, and that matters. This first version is the foundation. Some features are still evolving, the interface will keep changing, and more capabilities are planned as development continues. Rather than presenting a finished product, we're opening the door early and building the experience step by step, guided by real-world use.</p>
+
+        <h2>One app, several Apple platforms</h2>
+        <p>FileWall isn't being designed around a single device. You might save a document on your iPhone, organise on your iPad, and glance at something on your Apple Watch — so FileWall is built with all three in mind from the start. The goal is one consistent, private experience, with each version making the most of what its device does best.</p>
+
+        <h2>Built with a bigger vision</h2>
+        <p>FileWall started with a simple question: what if keeping your files private on Apple devices could feel this simple? A vault shouldn't feel like an afterthought — it should feel like a proper part of your everyday workflow, from the iPhone in your pocket to the iPad on your desk and the Apple Watch on your wrist.</p>
+
+        <h2>The journey starts now</h2>
+        <p>FileWall is entering early beta on iOS, iPadOS and Apple Watch. This release is the foundation for everything that comes next. There's still a lot to build and refine — but this is where FileWall begins.</p>
+        <p class="stand">FileWall — your private vault for the files you keep close. Available now in early beta for iPhone, iPad and Apple Watch.</p>
       </div>
     </div>
   </section>
   <section class="cta">
     <div class="wrap">
       <div class="cta-panel reveal">
-        <h2>Your files, on your iPhone, and nowhere else.</h2>
-        <p>No account to create, no server to trust. Your files stay on your device, encrypted.</p>
+        <h2>See it on each device.</h2>
+        <p>The vault, screen by screen, on every platform it runs on.</p>
         <div class="stores" style="justify-content:center">
-          <a class="btn btn-primary" href="download.html">Get FileWall</a>
-          <a class="btn btn-ghost" href="platforms.html">Compare platforms</a>
+          <a class="btn btn-primary" href="ios.html">FileWall on iPhone</a>
+          <a class="btn btn-ghost" href="ipad.html">On iPad</a>
+          <a class="btn btn-ghost" href="platforms.html">All platforms</a>
         </div>
       </div>
     </div>
@@ -178,9 +156,9 @@ try { if (localStorage.getItem('filewall-theme') === 'light')
   <section style="padding-top:0">
     <div class="wrap">
       <div class="fineprint"><ol>
-        <li>Screenshots are captures of FileWall on iPhone; exact wording and layout can change between updates. File names and sizes shown are sample data.</li>
-        <li>Apple, iPhone, Face ID and Touch ID are trademarks of Apple Inc., registered in the U.S. and other countries. App Store is a service mark of Apple Inc.</li>
-        <li>FileWall is developed by WR COVID TM and is not affiliated with, or endorsed by, Apple Inc. See <a href="trademarks.html">trademarks</a>.</li>
+        <li>FileWall on iPhone, iPad and Apple Watch is in early beta: features, wording and layout will change, and availability may be limited while the beta continues.</li>
+        <li>Files are encrypted on the device. FileWall has not been independently audited; the design is documented on this site and the source is public.</li>
+        <li>Apple, iPhone, iPad, Apple Watch, iPadOS, watchOS, Face ID and Touch ID are trademarks of Apple Inc. FileWall is developed by WR COVID TM and is not affiliated with, or endorsed by, Apple Inc. See <a href="trademarks.html">trademarks</a>.</li>
       </ol></div>
     </div>
   </section>
