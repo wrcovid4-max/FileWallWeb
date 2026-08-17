@@ -597,4 +597,71 @@
     });
   });
 
+  /* ── Article: copy link, share, save, table-of-contents, back to top ─── */
+  $$('[data-copy-link]').forEach(function (btn) {
+    btn.addEventListener('click', function () { copyText(location.href, 'Link copied'); });
+  });
+
+  $$('[data-share]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var h1 = $('h1'); var title = (h1 && h1.textContent.trim()) || document.title;
+      if (navigator.share) {
+        navigator.share({ title: title, url: location.href }).catch(function () {});
+      } else {
+        copyText(location.href, 'Link copied — share it anywhere');
+      }
+    });
+  });
+
+  $$('[data-save]').forEach(function (btn) {
+    var key = 'filewall-saved:' + location.pathname;
+    var label = $('[data-save-label]', btn);
+    var set = function (on) {
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      btn.classList.toggle('is-saved', on);
+      if (label) label.textContent = on ? 'Saved' : 'Save';
+    };
+    var saved = false;
+    try { saved = localStorage.getItem(key) === '1'; } catch (e) {}
+    set(saved);
+    btn.addEventListener('click', function () {
+      saved = !saved;
+      try { saved ? localStorage.setItem(key, '1') : localStorage.removeItem(key); } catch (e) {}
+      set(saved);
+      toast(saved ? 'Saved to this device' : 'Removed');
+    });
+  });
+
+  /* Table of contents scroll-spy */
+  var tocLinks = $$('.toc a[href^="#"]');
+  if (tocLinks.length && 'IntersectionObserver' in window) {
+    var byId = {};
+    tocLinks.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          tocLinks.forEach(function (a) { a.classList.remove('active'); });
+          var a = byId[en.target.id]; if (a) a.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-90px 0px -70% 0px' });
+    tocLinks.forEach(function (a) {
+      var el = document.getElementById(a.getAttribute('href').slice(1));
+      if (el) spy.observe(el);
+    });
+  }
+
+  /* Back to top */
+  var toTop = $('[data-to-top]');
+  if (toTop) {
+    var onScroll = function () {
+      if (window.scrollY > 600) toTop.hidden = false; else toTop.hidden = true;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    toTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: reduced.matches ? 'auto' : 'smooth' });
+    });
+  }
+
 })();
