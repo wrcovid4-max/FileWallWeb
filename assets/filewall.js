@@ -518,4 +518,81 @@
     });
   });
 
+  /* ── Article posts: per-image + bulk download, copy all text ─────────── */
+  function copyText(text, okMsg) {
+    var done = function () { toast(okMsg); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(function () { toast('Could not copy'); });
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = text; document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); done(); } catch (e) { toast('Could not copy'); }
+      ta.remove();
+    }
+  }
+
+  function downloadImage(img, name) {
+    var src = (img && (img.currentSrc || img.src)) || '';
+    if (!src) return Promise.resolve();
+    return fetch(src).then(function (r) { return r.blob(); }).then(function (blob) {
+      var ext = (blob.type.split('/')[1] || 'jpg').replace('jpeg', 'jpg');
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url; a.download = slug(name) + '.' + ext;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    });
+  }
+
+  function imgName(img, i) {
+    var fig = img.closest('figure');
+    var cap = fig && fig.querySelector('figcaption');
+    return slug((cap && cap.textContent) || img.getAttribute('alt') || 'filewall-image') + (i ? '-' + i : '');
+  }
+
+  $$('[data-img-download]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var fig = btn.closest('figure') || btn.closest('.shot');
+      var img = fig && fig.querySelector('img');
+      if (!img) return;
+      toast('Preparing image…');
+      downloadImage(img, imgName(img)).then(function () { toast('Image downloaded'); })
+        .catch(function () { toast('Could not download image'); });
+    });
+  });
+
+  $$('[data-article-download-all]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var imgs = $$('.post-hero-img img, .article-body img');
+      if (!imgs.length) { toast('No images to download'); return; }
+      btn.disabled = true;
+      toast('Preparing ' + imgs.length + ' image' + (imgs.length > 1 ? 's' : '') + '…');
+      var i = 0;
+      (function next() {
+        if (i >= imgs.length) { btn.disabled = false; toast('Downloaded ' + imgs.length + ' images'); return; }
+        downloadImage(imgs[i], imgName(imgs[i], i + 1)).catch(function () {})
+          .then(function () { i++; setTimeout(next, 250); });
+      })();
+    });
+  });
+
+  $$('[data-article-copy-all]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var parts = [];
+      var h1 = $('.page-hero h1');
+      if (h1) parts.push(h1.textContent.trim());
+      var lede = $('.page-hero .lede');
+      if (lede) parts.push(lede.textContent.trim());
+      var body = $('.article-body');
+      if (body) {
+        $$('h2, p, li, figcaption', body).forEach(function (n) {
+          var t = n.textContent.trim().replace(/\s+/g, ' ');
+          if (t) parts.push(t);
+        });
+      }
+      if (!parts.length) { toast('Nothing to copy'); return; }
+      copyText(parts.join('\n\n'), 'Copied the post');
+    });
+  });
+
 })();
