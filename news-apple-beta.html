@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Terms of Service — FileWall</title>
-<meta name="description" content="The terms governing use of FileWall, the file management app by WR COVID TM.">
+<title>FileWall Arrives on iOS, iPadOS and Apple Watch in Early Beta — FileWall</title>
+<meta name="description" content="FileWall, the private on-device vault, is now in early beta on iPhone, iPad and Apple Watch. Encrypted on the device, with a hidden vault, and no account.">
 <meta name="color-scheme" content="dark light">
 <meta name="theme-color" content="#0E1626">
 <link rel="icon" href="assets/filewall-icon-96.png">
@@ -28,7 +28,7 @@ try { if (localStorage.getItem('filewall-theme') === 'light')
       <a href="screens.html">Screens</a>
       <a href="platforms.html">Platforms</a>
       <a href="index.html#encryption">Security</a>
-      <a href="news.html">News</a>
+      <a href="news.html" aria-current="page">News</a>
       <a href="support.html">Support</a>
       <a href="download.html">Download</a>
     </nav>
@@ -46,7 +46,7 @@ try { if (localStorage.getItem('filewall-theme') === 'light')
         <li><a href="screens.html">Screens</a></li>
         <li><a href="platforms.html">Platforms</a></li>
         <li><a href="index.html#encryption">Security</a></li>
-        <li><a href="news.html">News</a></li>
+        <li><a href="news.html" aria-current="page">News</a></li>
         <li><a href="support.html">Support</a></li>
         <li><a href="download.html">Download</a></li>
       </ul>
@@ -85,124 +85,80 @@ try { if (localStorage.getItem('filewall-theme') === 'light')
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <main id="main">
-<section class="page-hero">
+  <section class="page-hero">
     <div class="wrap">
-      <div><p class="pill-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4.5h6a3 3 0 0 1 3 3V20a2.5 2.5 0 0 0-2.5-2.5H4Z"/><path d="M20 4.5h-6a3 3 0 0 0-3 3V20a2.5 2.5 0 0 1 2.5-2.5H20Z"/></svg> Legal</p></div>
-      <div><a class="back-link" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg> Back to overview</a></div>
-      <h1>Terms of Service</h1>
-      <p class="lede">Welcome to FileWall (&ldquo;the App&rdquo;), developed by WR COVID TM (&ldquo;we,&rdquo; &ldquo;our,&rdquo; or &ldquo;us&rdquo;). By downloading, installing, or using FileWall, you agree to these Terms of Service. If you do not agree with these Terms, please do not use the App.</p>
+      <div><a class="back-link" href="news.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg> Back to news</a></div>
+      <div><p class="pill-badge"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1.5 14.1 8 20.5 12 14.1 16 12 22.5 9.9 16 3.5 12 9.9 8Z"/></svg> Announcement</p></div>
+      <h1>FileWall Arrives on iOS, iPadOS and Apple Watch in Early Beta</h1>
+      <p class="lede">The private, on-device vault comes to Apple devices — encrypted on the phone, and now in your pocket, on your desk and on your wrist.</p>
+      <p class="news-meta" style="justify-content:center;margin-top:18px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><time datetime="2026-08-16">Aug 16, 2026</time></p>
     </div>
   </section>
-  <section style="padding-top:0;padding-bottom:0">
-    <div class="wrap">
-      <div class="legal-doc">
-        <p class="meta">
-          <span>Effective date: <b>August 3, 2026</b></span>
-          <span>Developer: <b>WR COVID TM</b></span>
-          <span>Contact: <b><a href="mailto:wr.covid.4@gmail.com">wr.covid.4@gmail.com</a></b></span>
-        </p>
+  <section style="padding-top:0">
+    <div class="wrap article">
+      <div class="article-body">
+        <p class="stand">Today we're bringing FileWall — the private, on-device vault — to Apple devices. FileWall is now in early beta on iPhone, iPad and Apple Watch, the first step toward a vault that follows you across the Apple ecosystem.</p>
+
+        <p>Your files tend to scatter: photos here, documents there, downloads and archives somewhere else again. FileWall is built around a straightforward idea — your files should be easy to find and easy to organise, and they should stay private while you do it. Everything you add is encrypted on the device and lives in a vault only you can open. There is no account, and there is no server behind it.</p>
+
+        <h2>Built for your Apple devices</h2>
+        <p>FileWall is designed from the ground up for Apple's hardware, so each version unlocks with the security your device already has and makes the most of its screen.</p>
+
+        <p class="dev-sub"><span aria-hidden="true">&#128241;</span><b>iPhone</b></p>
+        <p>On iPhone, FileWall gives your files a dedicated, private home. Browse documents, organise folders and open what you saved earlier — all behind Face ID, Touch ID or your passcode, with a hidden vault tucked behind a second passcode for the things that need it most.</p>
+
+        <p class="dev-sub"><span aria-hidden="true">&#128421;</span><b>iPad</b></p>
+        <p>File management gets more room on iPad. A permanent sidebar and a side-by-side view make working with larger collections comfortable, and Markup lets you annotate a photo or document without it ever leaving the vault. It's a file manager that feels at home on a bigger screen, not a stretched phone app.</p>
+
+        <p class="dev-sub"><span aria-hidden="true">&#8986;</span><b>Apple Watch</b></p>
+        <p>FileWall is making its way to Apple Watch too. The watch is built around quick access rather than the whole file manager: a glance at your unlocked files, right from your wrist. Hidden files are never sent to the watch, so a lost watch can't even ask for them.</p>
+
+        <h2>Designed around simplicity</h2>
+        <p>File management doesn't need to feel complicated. FileWall keeps the experience organised and understandable, and focuses on the things people actually need:</p>
+        <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg> Browse your files, encrypted on the device</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg> Organise folders and content</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg> Find files more easily</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg> Manage photos, videos, documents and more</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg> Keep a second, hidden vault behind its own passcode</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg> Access your files across supported Apple devices</li>
+      </ul>
+        <p>The aim is simple: open FileWall and immediately understand where everything is — while knowing it's all encrypted underneath.</p>
+
+        <h2>Early beta: the beginning, not the finish line</h2>
+        <p>FileWall is in early beta, and that matters. This first version is the foundation. Some features are still evolving, the interface will keep changing, and more capabilities are planned as development continues. Rather than presenting a finished product, we're opening the door early and building the experience step by step, guided by real-world use.</p>
+
+        <h2>One app, several Apple platforms</h2>
+        <p>FileWall isn't being designed around a single device. You might save a document on your iPhone, organise on your iPad, and glance at something on your Apple Watch — so FileWall is built with all three in mind from the start. The goal is one consistent, private experience, with each version making the most of what its device does best.</p>
+
+        <h2>Built with a bigger vision</h2>
+        <p>FileWall started with a simple question: what if keeping your files private on Apple devices could feel this simple? A vault shouldn't feel like an afterthought — it should feel like a proper part of your everyday workflow, from the iPhone in your pocket to the iPad on your desk and the Apple Watch on your wrist.</p>
+
+        <h2>The journey starts now</h2>
+        <p>FileWall is entering early beta on iOS, iPadOS and Apple Watch. This release is the foundation for everything that comes next. There's still a lot to build and refine — but this is where FileWall begins.</p>
+        <p class="stand">FileWall — your private vault for the files you keep close. Available now in early beta for iPhone, iPad and Apple Watch.</p>
       </div>
     </div>
   </section>
-
-  <section style="padding-top:clamp(30px,4vw,44px)">
+  <section class="cta">
     <div class="wrap">
-      <div class="legal-doc">
-        <nav class="legal-toc" aria-label="Sections">
-        <a href="#s1">1. About FileWall</a>
-        <a href="#s2">2. Supported Platforms</a>
-        <a href="#s3">3. Eligibility</a>
-        <a href="#s4">4. Google Sign-In</a>
-        <a href="#s5">5. Your Files</a>
-        <a href="#s6">6. Local Storage</a>
-        <a href="#s7">7. Acceptable Use</a>
-        <a href="#s8">8. Intellectual Property</a>
-        <a href="#s9">9. Updates</a>
-        <a href="#s10">10. Availability</a>
-        <a href="#s11">11. Disclaimer</a>
-        <a href="#s12">12. Limitation of Liability</a>
-        <a href="#s13">13. Termination</a>
-        <a href="#s14">14. Governing Law</a>
-        <a href="#s15">15. Changes</a>
-        <a href="#s16">16. Contact</a>
-        </nav>
-      <h2 id="s1">1. About FileWall</h2>
-      <p>FileWall is a file management application designed to help users organise, browse, manage, and access their files across supported platforms. The App stores files locally on your device. Some optional features may allow you to sign in with your Google Account.</p>
-
-      <h2 id="s2">2. Supported Platforms</h2>
-      <p>These Terms apply to FileWall on:</p>
-      <ul>
-        <li>iOS</li>
-        <li>iPadOS</li>
-        <li>Android</li>
-        <li>watchOS</li>
-        <li>wearOS</li>
-        <li>visionOS</li>
-        <li>XR-compatible devices</li>
-      </ul>
-
-      <h2 id="s3">3. Eligibility</h2>
-      <p>You must be at least 16 years old to use FileWall.</p>
-      <p>By using the App, you confirm that you meet this requirement.</p>
-
-      <h2 id="s4">4. Google Sign-In</h2>
-      <p>Google Sign-In is optional.</p>
-      <p>If you choose to sign in with your Google Account, you authorise FileWall to authenticate your identity using Google's secure authentication services. You may disconnect your Google Account at any time.</p>
-
-      <h2 id="s5">5. Your Files</h2>
-      <p>You retain full ownership of every file you create, store, import, or manage using FileWall.</p>
-      <p>WR COVID TM does not claim ownership of your files.</p>
-
-      <h2 id="s6">6. Local Storage</h2>
-      <p>Unless a feature specifically states otherwise, FileWall stores your files locally on your device.</p>
-      <p>You are responsible for maintaining backups of your important data.</p>
-
-      <h2 id="s7">7. Acceptable Use</h2>
-      <p>You agree not to:</p>
-      <ul>
-        <li>Use FileWall for unlawful purposes.</li>
-        <li>Attempt to interfere with the App's operation.</li>
-        <li>Reverse engineer or modify the App except where permitted by law.</li>
-        <li>Distribute malware or harmful content through the App.</li>
-      </ul>
-
-      <h2 id="s8">8. Intellectual Property</h2>
-      <p>FileWall, its name, branding, logos, interface, and software are the intellectual property of WR COVID TM unless otherwise stated.</p>
-
-      <h2 id="s9">9. Updates</h2>
-      <p>We may release updates, improvements, bug fixes, or new features at any time.</p>
-
-      <h2 id="s10">10. Availability</h2>
-      <p>Although we strive to provide a reliable experience, we cannot guarantee uninterrupted availability or compatibility with every device or operating system.</p>
-
-      <h2 id="s11">11. Disclaimer</h2>
-      <p>FileWall is provided &ldquo;as is&rdquo; and &ldquo;as available&rdquo; without warranties of any kind to the fullest extent permitted by law.</p>
-
-      <h2 id="s12">12. Limitation of Liability</h2>
-      <p>To the maximum extent permitted by applicable law, WR COVID TM shall not be liable for any indirect, incidental, special, or consequential damages resulting from the use of FileWall.</p>
-
-      <h2 id="s13">13. Termination</h2>
-      <p>We reserve the right to suspend or terminate access if these Terms are violated or if required by law.</p>
-
-      <h2 id="s14">14. Governing Law</h2>
-      <p>These Terms shall be governed by the laws of the Islamic Republic of Pakistan.</p>
-
-      <h2 id="s15">15. Changes</h2>
-      <p>We may update these Terms periodically. Continued use of FileWall after changes become effective constitutes acceptance of the revised Terms.</p>
-
-      <h2 id="s16">16. Contact</h2>
-      <p>Developer: WR COVID TM</p>
-      <p>Email: <a href="mailto:wr.covid.4@gmail.com">wr.covid.4@gmail.com</a></p>
-
+      <div class="cta-panel reveal">
+        <h2>See it on each device.</h2>
+        <p>The vault, screen by screen, on every platform it runs on.</p>
+        <div class="stores" style="justify-content:center">
+          <a class="btn btn-primary" href="ios.html">FileWall on iPhone</a>
+          <a class="btn btn-ghost" href="ipad.html">On iPad</a>
+          <a class="btn btn-ghost" href="platforms.html">All platforms</a>
+        </div>
       </div>
     </div>
   </section>
   <section style="padding-top:0">
     <div class="wrap">
       <div class="fineprint"><ol>
-        <li>This page is the Terms of Service in full; the summaries elsewhere on this site are descriptive and do not override it.</li>
-        <li>These Terms are provided in English, and the English text governs. They may change without individual notice — the effective date above tells you which version you are reading.</li>
-        <li>Nothing here is legal advice. See also the <a href="privacy.html">privacy policy</a> and <a href="trademarks.html">trademarks</a>.</li>
+        <li>FileWall on iPhone, iPad and Apple Watch is in early beta: features, wording and layout will change, and availability may be limited while the beta continues.</li>
+        <li>Files are encrypted on the device. FileWall has not been independently audited; the design is documented on this site and the source is public.</li>
+        <li>Apple, iPhone, iPad, Apple Watch, iPadOS, watchOS, Face ID and Touch ID are trademarks of Apple Inc. FileWall is developed by WR COVID TM and is not affiliated with, or endorsed by, Apple Inc. See <a href="trademarks.html">trademarks</a>.</li>
       </ol></div>
     </div>
   </section>
