@@ -534,26 +534,28 @@
   function downloadImage(img, name) {
     var src = (img && (img.currentSrc || img.src)) || '';
     if (!src) return Promise.resolve();
-    return fetch(src).then(function (r) { return r.blob(); }).then(function (blob) {
-      var ext = (blob.type.split('/')[1] || 'jpg').replace('jpeg', 'jpg');
-      var url = URL.createObjectURL(blob);
-      var a = document.createElement('a');
-      a.href = url; a.download = slug(name) + '.' + ext;
-      document.body.appendChild(a); a.click(); a.remove();
-      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
-    });
+    var ext = (src.split('?')[0].split('.').pop() || 'img').toLowerCase();
+    if (ext.length > 5) ext = 'img';
+    // Same-origin assets: a download link is the most reliable across hosts.
+    var a = document.createElement('a');
+    a.href = src; a.download = slug(name) + '.' + ext;
+    document.body.appendChild(a); a.click(); a.remove();
+    return Promise.resolve();
   }
 
   function imgName(img, i) {
     var fig = img.closest('figure');
     var cap = fig && fig.querySelector('figcaption');
-    return slug((cap && cap.textContent) || img.getAttribute('alt') || 'filewall-image') + (i ? '-' + i : '');
+    var base = (cap && cap.textContent) || img.getAttribute('alt') ||
+               ((img.getAttribute('src') || '').split('/').pop().split('.')[0]) || 'filewall-image';
+    return slug(base) + (i ? '-' + i : '');
   }
 
   $$('[data-img-download]').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var fig = btn.closest('figure') || btn.closest('.shot');
-      var img = fig && fig.querySelector('img');
+    btn.addEventListener('click', function (e) {
+      e.preventDefault(); e.stopPropagation();
+      var scope = btn.closest('figure') || btn.closest('.dl-wrap') || btn.closest('.shot');
+      var img = scope && scope.querySelector('img');
       if (!img) return;
       toast('Preparing image…');
       downloadImage(img, imgName(img)).then(function () { toast('Image downloaded'); })
