@@ -93,6 +93,56 @@ try { if (localStorage.getItem('filewall-theme') === 'light')
       <p class="lede">Release notes, security changes and the occasional write-up about why something was built the way it was.</p>
     </div>
   </section>
+  <section data-filter-scope aria-labelledby="posts-h">
+    <div class="wrap">
+      <div class="section-head reveal" style="text-align:center;max-width:none">
+        <p class="eyebrow">Archive</p>
+        <h2 id="posts-h">Every post</h2>
+      </div>
+
+      <div class="page-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
+        <input type="search" data-filter-search placeholder="Search articles…" aria-label="Search articles">
+      </div>
+      <div class="filter-bar">
+        <button class="chip" type="button" data-chip="all" aria-pressed="true">All</button>
+        <button class="chip" type="button" data-chip="features" aria-pressed="false">Features</button>
+        <button class="chip" type="button" data-chip="security" aria-pressed="false">Security</button>
+        <button class="chip" type="button" data-chip="engineering" aria-pressed="false">Engineering</button>
+      </div>
+
+      <div class="bulk-bar reveal">
+        <button class="btn btn-ghost" type="button" data-news-download-all><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="m7 11 5 5 5-5"/><path d="M5 20h14"/></svg> Download all images</button>
+        <button class="btn btn-ghost" type="button" data-news-copy-all><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg> Copy all text</button>
+        <span class="bulk-note">Works on whatever posts are showing.</span>
+      </div>
+
+      <div class="news-grid">
+        <article class="news-card reveal" data-cat="features">
+          <a class="news-art" href="news-apple-beta.html" aria-label="Read: FileWall Arrives on iOS, iPadOS and Apple Watch in Early Beta"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.3 12.75c.02-2.1 1.72-3.11 1.8-3.16-.98-1.44-2.5-1.63-3.05-1.65-1.3-.13-2.53.76-3.19.76-.66 0-1.67-.74-2.74-.72-1.41.02-2.71.82-3.43 2.08-1.46 2.54-.37 6.3 1.05 8.36.7 1.01 1.53 2.14 2.62 2.1 1.05-.04 1.45-.68 2.72-.68 1.27 0 1.63.68 2.74.66 1.13-.02 1.85-1.03 2.54-2.04.8-1.17 1.13-2.3 1.15-2.36-.03-.01-2.2-.85-2.21-3.35ZM14.2 6.5c.58-.7.97-1.68.86-2.65-.83.03-1.84.55-2.44 1.25-.53.62-1 1.61-.87 2.56.93.07 1.87-.47 2.45-1.16Z"/></svg></a>
+          <div class="inner">
+            <p class="news-tag">Announcement</p>
+            <h3><a href="news-apple-beta.html">FileWall Arrives on iOS, iPadOS and Apple Watch in Early Beta</a></h3>
+            <p>The private, on-device vault comes to Apple devices. FileWall is now in early beta on iPhone, iPad and Apple Watch — encrypted on the device, with a hidden vault and no account.</p>
+            <p class="news-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><time datetime="2026-08-16">Aug 16, 2026</time></p>
+          </div>
+        </article>
+      </div>
+
+      <p class="no-results" data-no-results hidden>No posts match that. Try “beta”, “iPhone” or “vault”.</p>
+    </div>
+  </section>
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="fineprint"><ol>
+        <li>Posts here describe changes to FileWall at the time of writing and are not a roadmap;</li>
+        <li>nothing on this page is a commitment to ship a feature, keep a behaviour, or hit a date.</li>
+        <li>Where a post describes iPhone, iPad, Apple Vision Pro, Android XR or Apple Watch, that platform is in early beta.</li>
+        <li>Details can go out of date as the app changes — the <a href="index.html#encryption">security section</a> and the source are the current record.</li>
+      </ol></div>
+    </div>
+  </section>
+  <hr class="rule">
 <!-- ── UPDATES ──────────────────────────────────────────────────────── -->
   <section id="updates" aria-labelledby="news-updates-h">
     <div class="wrap">
@@ -198,57 +248,6 @@ try { if (localStorage.getItem('filewall-theme') === 'light')
     </div>
   </section>
 
-  <hr class="rule">
-
-  <section data-filter-scope aria-labelledby="posts-h">
-    <div class="wrap">
-      <div class="section-head reveal" style="text-align:center;max-width:none">
-        <p class="eyebrow">Archive</p>
-        <h2 id="posts-h">Every post</h2>
-      </div>
-
-      <div class="page-search">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
-        <input type="search" data-filter-search placeholder="Search articles…" aria-label="Search articles">
-      </div>
-      <div class="filter-bar">
-        <button class="chip" type="button" data-chip="all" aria-pressed="true">All</button>
-        <button class="chip" type="button" data-chip="features" aria-pressed="false">Features</button>
-        <button class="chip" type="button" data-chip="security" aria-pressed="false">Security</button>
-        <button class="chip" type="button" data-chip="engineering" aria-pressed="false">Engineering</button>
-      </div>
-
-      <div class="bulk-bar reveal">
-        <button class="btn btn-ghost" type="button" data-news-download-all><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="m7 11 5 5 5-5"/><path d="M5 20h14"/></svg> Download all images</button>
-        <button class="btn btn-ghost" type="button" data-news-copy-all><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg> Copy all text</button>
-        <span class="bulk-note">Works on whatever posts are showing.</span>
-      </div>
-
-      <div class="news-grid">
-        <article class="news-card reveal" data-cat="features">
-          <a class="news-art" href="news-apple-beta.html" aria-label="Read: FileWall Arrives on iOS, iPadOS and Apple Watch in Early Beta"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.3 12.75c.02-2.1 1.72-3.11 1.8-3.16-.98-1.44-2.5-1.63-3.05-1.65-1.3-.13-2.53.76-3.19.76-.66 0-1.67-.74-2.74-.72-1.41.02-2.71.82-3.43 2.08-1.46 2.54-.37 6.3 1.05 8.36.7 1.01 1.53 2.14 2.62 2.1 1.05-.04 1.45-.68 2.72-.68 1.27 0 1.63.68 2.74.66 1.13-.02 1.85-1.03 2.54-2.04.8-1.17 1.13-2.3 1.15-2.36-.03-.01-2.2-.85-2.21-3.35ZM14.2 6.5c.58-.7.97-1.68.86-2.65-.83.03-1.84.55-2.44 1.25-.53.62-1 1.61-.87 2.56.93.07 1.87-.47 2.45-1.16Z"/></svg></a>
-          <div class="inner">
-            <p class="news-tag">Announcement</p>
-            <h3><a href="news-apple-beta.html">FileWall Arrives on iOS, iPadOS and Apple Watch in Early Beta</a></h3>
-            <p>The private, on-device vault comes to Apple devices. FileWall is now in early beta on iPhone, iPad and Apple Watch — encrypted on the device, with a hidden vault and no account.</p>
-            <p class="news-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><time datetime="2026-08-16">Aug 16, 2026</time></p>
-          </div>
-        </article>
-      </div>
-
-      <p class="no-results" data-no-results hidden>No posts match that. Try “beta”, “iPhone” or “vault”.</p>
-    </div>
-  </section>
-  <section style="padding-top:0">
-    <div class="wrap">
-      <div class="fineprint"><ol>
-        <li>Posts here describe changes to FileWall at the time of writing and are not a roadmap;</li>
-        <li>nothing on this page is a commitment to ship a feature, keep a behaviour, or hit a date.</li>
-        <li>Where a post describes a platform other than Android or Wear OS, that platform is still in development.</li>
-        <li>Details can go out of date as the app changes — the <a href="index.html#encryption">security section</a> and the source are the current record.</li>
-      </ol></div>
-    </div>
-  </section>
 </main>
 
 <footer class="site-footer">
