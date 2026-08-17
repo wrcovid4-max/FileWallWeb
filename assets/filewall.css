@@ -16,7 +16,7 @@
   --r-sm:12px;
   --maxw:1160px;
   --gutter:clamp(20px,5vw,40px);
-  --section-y:clamp(72px,10vw,132px);
+  --section-y:clamp(46px,6vw,82px);
 
   --font:"Inter","Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
@@ -674,7 +674,7 @@ html{scroll-behavior:smooth}
 .search-empty{padding:26px 20px;color:var(--muted);text-align:center}
 
 /* ── Sub-page hero ────────────────────────────────────────────────────── */
-.page-hero{text-align:center;padding-block:clamp(52px,8vw,92px) clamp(36px,5vw,56px);position:relative;overflow:hidden}
+.page-hero{text-align:center;padding-block:clamp(38px,5vw,64px) clamp(26px,3.5vw,42px);position:relative;overflow:hidden}
 .page-hero::before{
   content:"";position:absolute;inset:-40% -20% auto -20%;height:640px;
   background:radial-gradient(50% 60% at 50% 30%,var(--glow),transparent 70%);pointer-events:none;
@@ -858,9 +858,8 @@ html{scroll-behavior:smooth}
 .news-meta{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:.85rem;margin-top:16px}
 .news-meta svg{width:14px;height:14px}
 
-.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:24px}
-@media (max-width:940px){ .news-grid{grid-template-columns:repeat(2,1fr)} }
-@media (max-width:620px){ .news-grid{grid-template-columns:1fr} }
+.news-grid{display:flex;flex-wrap:wrap;gap:20px;margin-top:24px;justify-content:center}
+.news-card{width:340px;max-width:100%}
 .news-card{
   background:var(--card);border:1px solid var(--border);border-radius:var(--r-card);
   overflow:hidden;display:flex;flex-direction:column;
@@ -1365,3 +1364,9 @@ html{scroll-behavior:smooth}
 .post-articlebar{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:26px auto 0;max-width:720px}
 .post-articlebar .btn{padding:10px 18px;font-size:.9rem;white-space:nowrap;width:auto}
 .post-articlebar .btn svg{width:17px;height:17px;flex:none}
+
+/* ── Downloadable brand logo (header + footer) ────────────────────────── */
+.brand-wrap{position:relative;display:inline-flex;align-items:center}
+.brand-wrap .shot-actions{top:-9px;left:2px;right:auto}
+.brand-wrap .shot-btn{width:24px;height:24px;border-radius:7px}
+.brand-wrap .shot-btn svg{width:12px;height:12px}
